@@ -1,87 +1,110 @@
-const Navbar = () => {
+import { Link } from "@inertiajs/react";
+import React from "react";
+
+const TopNavbar = () => {
     return (
-        <>
-            <div className="navbar bg-base-100 shadow-lg">
-                <div className="navbar-start lg:px-8">
-                    <div className="dropdown">
-                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16"
-                                />
-                            </svg>
-                        </label>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-                        >
-                            <li>
-                                <a>Item 1</a>
-                            </li>
-                            <li>
-                                <a>Parent</a>
-                                <ul className="p-2">
-                                    <li>
-                                        <a>Submenu 1</a>
-                                    </li>
-                                    <li>
-                                        <a>Submenu 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a>Item 3</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <a className="btn btn-ghost normal-case text-xl">
-                        Birin Farm
-                    </a>
-                </div>
-                <div className="navbar-end hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 text-lg">
-                        <li>
-                            <a>Beranda</a>
-                        </li>
-                        <li>
-                            <a>Galleri</a>
-                        </li>
-                        <li>
-                            <a>Artikel</a>
-                        </li>
-                        <li>
-                            <a>Produk</a>
-                        </li>
-                        <li tabIndex={0}>
-                            <details>
-                                <summary>Parent</summary>
-                                <ul className="p-2">
-                                    <li>
-                                        <a>Submenu 1</a>
-                                    </li>
-                                    <li>
-                                        <a>Submenu 2</a>
-                                    </li>
-                                </ul>
-                            </details>
-                        </li>
-                        <li>
-                            <a>Item 3</a>
-                        </li>
-                    </ul>
+        <nav className="bg-white border-gray-200 dark:bg-gray-900">
+            <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl lg:px-0 px-4 py-4">
+                <Link href="https://flowbite.com" className="flex items-center">
+                    <img
+                        src="img/loader.png"
+                        className="h-10 mr-3"
+                        alt="Aplication Logo"
+                    />
+                    <span className="font-[] self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                        Birinfarm
+                    </span>
+                </Link>
+                <div className="flex items-center">
+                    <Link
+                        href="tel:5541251234"
+                        className="mr-6 text-sm text-gray-500 dark:text-white hover:underline"
+                    >
+                        (555) 412-1234
+                    </Link>
+                    {/* <Link
+                        href="#"
+                        className="text-sm text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                        Login
+                    </Link> */}
                 </div>
             </div>
+        </nav>
+    );
+};
+
+const NavbarMenu = ({ pages }) => {
+    return (
+        <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-md">
+            <li
+                className={`text-slate-700 ${
+                    pages === "Home"
+                        ? "border-b-4 border-lime-600 hover:border-0"
+                        : ""
+                }`}
+            >
+                <Link href={route("home")}>Beranda</Link>
+            </li>
+            <li
+                className={`text-slate-700 ${
+                    pages === "Ternak"
+                        ? "border-b-4 border-lime-600 hover:border-0"
+                        : ""
+                }`}
+            >
+                <Link href={route("ternak")}>Produk</Link>
+            </li>
+            <li
+                className={`text-slate-700 ${
+                    pages === "Pemesanan"
+                        ? "border-b-4 border-lime-600 hover:border-0"
+                        : ""
+                }`}
+            >
+                <Link href={route("pemesanan")}>Pemesanan</Link>
+            </li>
+            <li>
+                <Link
+                    href="#"
+                    className="text-gray-900 dark:text-white hover:underline"
+                >
+                    Artikel
+                </Link>
+            </li>
+            <li>
+                <Link
+                    href="#"
+                    className="text-gray-900 dark:text-white hover:underline"
+                >
+                    Galeri
+                </Link>
+            </li>
+            <li>
+                <Link
+                    href="#"
+                    className="text-gray-900 dark:text-white hover:underline"
+                >
+                    Tentang Kami
+                </Link>
+            </li>
+        </ul>
+    );
+};
+
+const Navbar = ({ pages }) => {
+    return (
+        <>
+            <TopNavbar />
+            <nav className="bg-gray-50 dark:bg-gray-700">
+                <div className="max-w-screen-xl lg:px-0 px-4 py-3 mx-auto">
+                    <div className="flex items-center">
+                        <NavbarMenu pages={pages} />
+                    </div>
+                </div>
+            </nav>
         </>
     );
 };
 
-export default Navbar
+export default Navbar;
