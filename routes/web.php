@@ -7,6 +7,7 @@ use App\Http\Controllers\TernakController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,18 +29,27 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/pemesanan', [PemesananController::class, 'pemesananPage'])->name('pemesanan');
-    Route::post('/pemesanan', [PemesananController::class, 'handlePemesanan'])->name('pemesanan.create');
-    Route::get('/transaksi', [PemesananController::class, 'Transaksi'])->name('transaksi');
-    Route::get('/cetak', [PemesananController::class, 'cetakNota'])->name('cetakNota');
+    Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
+
+    Route::group(['middleware' => 'checkRole:admin'], function () {
+        Route::inertia('/dashboard', 'Dashboard')->name('dashboard');
+    });
+
+    Route::group(['middleware' => 'checkRole:user'], function () {
+        Route::get('/pemesanan', [PemesananController::class, 'pemesananPage'])->name('pemesanan');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::post('/pemesanan', [PemesananController::class, 'handlePemesanan'])->name('pemesanan.create');
+        Route::get('/transaksi', [PemesananController::class, 'Transaksi'])->name('transaksi');
+        Route::get('/cetak', [PemesananController::class, 'cetakNota'])->name('cetakNota');
+    });
+
 });
 
 
