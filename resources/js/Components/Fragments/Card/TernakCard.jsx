@@ -4,7 +4,7 @@ import FormattedDate from "@/Components/Elements/FormatedDate";
 import { Link } from "@inertiajs/react";
 
 const TernakCard = (props) => {
-    const { id, foto, deskripsi, jenis_ternak, kode_ternak, updated_at } = props;
+    const { id, foto, deskripsi, nama, kode_ternak, updated_at } = props;
     const formattedDeskripsi =
         deskripsi.length > 100 ? deskripsi.slice(0, 100) + "..." : deskripsi;
     return (
@@ -19,7 +19,7 @@ const TernakCard = (props) => {
             <div className="p-5">
                 <a href="#">
                     <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                        {jenis_ternak.nama} - {kode_ternak}
+                        {kode_ternak} - {nama}
                     </h5>
                 </a>
                 <div className="flex items-center text-xs">
@@ -31,7 +31,7 @@ const TernakCard = (props) => {
                     {formattedDeskripsi}
                 </p>
                 <Link
-                    href={route('ternak.detail')}
+                    href={route("ternak.detail")}
                     data={{ id: id }}
                     method="get"
                     className="inline-flex items-center font-medium text-lime-600 dark:text-lime-500 hover:underline"

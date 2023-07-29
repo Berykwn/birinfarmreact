@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/pemesanan', [PemesananController::class, 'pemesananPage'])->name('pemesanan');
+    Route::post('/pemesanan', [PemesananController::class, 'handlePemesanan'])->name('pemesanan.create');
+    Route::get('/transaksi', [PemesananController::class, 'Transaksi'])->name('transaksi');
+    Route::get('/cetak', [PemesananController::class, 'cetakNota'])->name('cetakNota');
 });
 
 

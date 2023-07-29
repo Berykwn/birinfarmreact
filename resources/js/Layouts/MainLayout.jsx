@@ -3,12 +3,12 @@ import Navbar from "@/Components/Fragments/Partials/Navbar";
 import { Head } from "@inertiajs/react";
 
 const MainLayout = (props) => {
-    const { title, pages, children } = props;
+    const { title, pages, children, auth } = props;
     return (
         <div>
             <Head title={title} />
             <div className="">
-                <Navbar pages={pages} />
+                <Navbar pages={pages} auth={auth} />
             </div>
 
             <main>{children}</main>

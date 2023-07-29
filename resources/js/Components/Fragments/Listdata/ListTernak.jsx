@@ -47,7 +47,7 @@ const ListTernak = ({ ternaks }) => {
     };
 
     const filteredTernaks = ternaks.filter((item) =>
-        item.jenis_ternak.nama.toLowerCase().includes(searchQuery.toLowerCase())
+        item.nama.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (

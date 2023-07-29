@@ -2,10 +2,9 @@ import MainLayout from "@/Layouts/MainLayout";
 import { Link } from "@inertiajs/react";
 
 const DetailTernak = (props) => {
-    const { title, pages, ternakDetail } = props;
-    console.log(ternakDetail)
+    const { title, pages, ternakDetail, auth } = props;
     return (
-        <MainLayout title={title} pages={pages}>
+        <MainLayout title={title} pages={pages} auth={auth}>
             <section className="bg-off-white-gray">
                 <div className="container mx-auto flex flex-col md:flex-row">
                     <div className="lg:pl-24 lg:pr-4 lg:py-16">

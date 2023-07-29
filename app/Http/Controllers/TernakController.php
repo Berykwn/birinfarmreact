@@ -11,7 +11,7 @@ class TernakController extends Controller
 {
     public function ternakPage()
     {
-        $ternakData = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
+        $ternakData = Ternak::all();
 
         return Inertia::render('Ternak', [
             'title' => 'Ternak',

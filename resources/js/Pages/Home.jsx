@@ -5,9 +5,9 @@ import ProductCard from "@/Components/Fragments/Card/ProductCard";
 import ListJenis from "@/Components/Fragments/Listdata/ListJenis";
 
 const Home = (props) => {
-    const { title, pages, jenis } = props;
+    const { title, pages, jenis, auth } = props;
     return (
-        <MainLayout title={title} pages={pages}>
+        <MainLayout title={title} pages={pages} auth={auth}>
             <div className="px-4 py-8 lg:px-28 lg:py-10">
                 <Jumbotron />
                 <div className="pt-10 pb-2 flex justify-center">

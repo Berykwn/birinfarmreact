@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_ternak')->nullable();
+            $table->integer('jumlah_jantan');
+            $table->integer('jumlah_betina');
+            $table->integer('id_users');
+            $table->string('kontak');
+            $table->string('alamat');
+            $table->string('catatan')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }

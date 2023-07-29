@@ -2,24 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jenis_ternak;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Ternak;
+use App\Models\Ring;
 use App\Http\Resources\TernakCollection;
+use App\Http\Requests\PemesananRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PemesananController extends Controller
 {
     public function pemesananPage()
     {
-        $ternakData = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
+        $ternaks = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
 
         return Inertia::render('Pemesanan', [
             'title' => 'Pemesanan',
             'pages' => 'Pemesanan',
-            'ternakData' => new TernakCollection($ternakData)
+            'ternakData' => new TernakCollection($ternaks)
         ]);
     }
+
+    public function handlePemesanan(PemesananRequest $request)
+    {
+        $validatedData = $request->validated();
+        Pemesanan::create($validatedData);
+        return redirect()->route('transaksi')->with('message', 'Data event berhasil ditambahkan');
+    }
+
+    public function transaksi()
+    {
+        $userId = Auth::id();
+
+        // Retrieve transactions with eager-loaded relationships (ternak and users)
+        $transactions = Pemesanan::with(['ternak', 'users'])
+            ->where('id_users', $userId)
+            ->latest()
+            ->get();
+
+        return Inertia::render('Transaksi', [
+            'title' => 'Transaksi',
+            'pages' => 'Transaksi',
+            'transactions' => $transactions,
+        ]);
+    }
+
+    public function cetakNota(Pemesanan $pemesanan, Request $request)
+    {
+        $notaData = $pemesanan->with(['ternak', 'users'])->find($request->id);
+
+        $jenis = Jenis_ternak::where('id', $notaData->ternak->id_jenis)->first();
+
+        $ring = Ring::where('id', $notaData->ternak->id_ring)->first();
+
+        return Inertia::render('CetakNota', [
+            'notaData' => $notaData,
+            'jenis' => $jenis,
+            'ring' => $ring,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
