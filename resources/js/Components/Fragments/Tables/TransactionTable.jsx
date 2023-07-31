@@ -1,4 +1,4 @@
-import FormattedDate from "@/Components/Elements/FormatedDate";
+import FormattedDate from "@/Components/Elements/FormattedDate";
 import { Link } from "@inertiajs/react";
 
 const TransactionTable = ({ transaction }) => {

@@ -7,7 +7,7 @@ const MainLayout = (props) => {
     return (
         <div>
             <Head title={title} />
-            <div className="">
+            <div className=""> 
                 <Navbar pages={pages} auth={auth} />
             </div>
 

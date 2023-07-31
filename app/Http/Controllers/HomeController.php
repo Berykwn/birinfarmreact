@@ -19,7 +19,7 @@ class HomeController extends Controller
 
         return Inertia::render('Home', [
             'title' => 'Home',
-            'pages' => 'Home',
+            'pages' => 'home',
             'banner' => new BannerCollection($banners),
             'ternak' => new TernakCollection($ternaks),
             'jenis' => Jenis_ternak::latest()->get(),

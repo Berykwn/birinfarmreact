@@ -15,7 +15,7 @@ class TernakController extends Controller
 
         return Inertia::render('Ternak', [
             'title' => 'Ternak',
-            'pages' => 'Ternak',
+            'pages' => 'ternak',
             'ternak' => new TernakCollection($ternakData),
         ]);
     }
@@ -26,7 +26,7 @@ class TernakController extends Controller
 
         return Inertia::render('DetailTernak', [
             'title' => 'Ternak',
-            'pages' => 'Ternak',
+            'pages' => 'ternak',
             'ternakDetail' => $getTernakById,
         ]);
     }

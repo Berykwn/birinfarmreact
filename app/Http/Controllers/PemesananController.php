@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Jenis_ternak;
 use App\Models\Pemesanan;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
 use App\Models\Ternak;
 use App\Models\Ring;
 use App\Http\Resources\TernakCollection;
 use App\Http\Requests\PemesananRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PemesananController extends Controller
 {
@@ -20,7 +20,7 @@ class PemesananController extends Controller
 
         return Inertia::render('Pemesanan', [
             'title' => 'Pemesanan',
-            'pages' => 'Pemesanan',
+            'pages' => 'pemesanan',
             'ternakData' => new TernakCollection($ternaks)
         ]);
     }
@@ -29,14 +29,13 @@ class PemesananController extends Controller
     {
         $validatedData = $request->validated();
         Pemesanan::create($validatedData);
-        return redirect()->route('transaksi')->with('message', 'Data event berhasil ditambahkan');
+        return redirect()->route('transaksi')->with('message', 'Pemesanan sedang di proses! silahkan cetak nota dan hubungi admin untuk memproses pesanan..');
     }
 
     public function transaksi()
     {
         $userId = Auth::id();
 
-        // Retrieve transactions with eager-loaded relationships (ternak and users)
         $transactions = Pemesanan::with(['ternak', 'users'])
             ->where('id_users', $userId)
             ->latest()
@@ -71,7 +70,26 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        //
+        $pesanan = Pemesanan::with(['ternak', 'users'])->latest()->paginate(10);
+        $allPesanan = Pemesanan::with(['ternak', 'users'])->latest()->get();
+
+        return Inertia::render('Admin/Pesanan/Pesanan', [
+            'title' => 'Pesanan',
+            'pages' => 'pesanan',
+            'pesanan' => $pesanan,
+            'allPesanan' => $allPesanan,
+        ]);
+    }
+
+    public function confirmPesanan(Request $request, $id)
+    {
+        $pesanan = Pemesanan::findOrFail($id);
+
+        $pesanan->status = 'Success';
+
+        $pesanan->save();
+
+        return redirect('pesanan')->with('message', 'Pesanan telah di konfirmasi!');
     }
 
     /**

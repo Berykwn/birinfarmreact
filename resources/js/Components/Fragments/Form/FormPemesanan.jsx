@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { router } from "@inertiajs/react";
 
 import LabelPemesanan from "@/Components/Elements/Input/LabelPemesanan";
-import TextInput from "@/Components/TextInput";
-import InputError from "@/Components/InputError";
+import TextInput from "@/Components/Elements/Input/TextInput";
+import InputError from "@/Components/Elements/Input/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
 
 const FormPemesanan = ({ ternakData, auth, errors }) => {

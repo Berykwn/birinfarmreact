@@ -1,8 +1,9 @@
 import React from "react";
 
-const CetakNota = (props) => {
-    const { notaData, jenis, ring } = props
-    const total = notaData.jumlah_jantan + notaData.jumlah_betina
+const CetakNota = ({ notaData, jenis, ring }) => {
+    const total = notaData.jumlah_jantan + notaData.jumlah_betina;
+    const currentDate = new Date().toLocaleDateString();
+
     return (
         <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-8">
@@ -19,7 +20,7 @@ const CetakNota = (props) => {
                 <div className="">
                     <div className="py-6">
                         <h3 className="text-sm font-light text-gray-900">
-                            Tanggal : Date: {new Date().toLocaleDateString()}
+                            Tanggal : Date: {currentDate}
                         </h3>
                         <h3 className="text-sm font-light text-gray-900">
                             Nama pembeli : {notaData.users.name}
@@ -64,10 +65,18 @@ const CetakNota = (props) => {
                                         >
                                             {notaData.ternak.nama}
                                         </th>
-                                        <td className="px-6 py-4">{jenis.nama}</td>
-                                        <td className="px-6 py-4">{ring.kode}</td>
-                                        <td className="px-6 py-4">{notaData.jumlah_jantan}</td>
-                                        <td className="px-6 py-4">{notaData.jumlah_betina}</td>
+                                        <td className="px-6 py-4">
+                                            {jenis.nama}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {ring.kode}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {notaData.jumlah_jantan}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {notaData.jumlah_betina}
+                                        </td>
                                         <td className="px-6 py-4">{total}</td>
                                     </tr>
                                 </tbody>
@@ -75,7 +84,7 @@ const CetakNota = (props) => {
                         </div>
                     </div>
                     <div className="py-4">
-                      <h5 className="text-sm">note :</h5>
+                        <h5 className="text-sm">note :</h5>
                         <p className="text-sm">{notaData.catatan}</p>
                     </div>
                 </div>

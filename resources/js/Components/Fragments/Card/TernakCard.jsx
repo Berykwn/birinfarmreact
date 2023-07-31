@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "@/Components/Elements/Icon";
-import FormattedDate from "@/Components/Elements/FormatedDate";
+import FormattedDate from "@/Components/Elements/FormattedDate";
 import { Link } from "@inertiajs/react";
 
 const TernakCard = (props) => {
