@@ -11,9 +11,9 @@ const Paginator = ({ link }) => {
                                 href={linkItem.url}
                                 className={`flex items-center justify-center px-3 h-8 ${
                                     linkItem.active
-                                        ? "bg-stone-500 text-white"
+                                        ? "bg-stone-600 text-white"
                                         : "text-gray-500 bg-white border border-gray-300"
-                                } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                                } hover:bg-gray-100 hover:text-gray-700 `}
                             >
                                 {/* Remove &laquo; and &raquo; entities from the label */}
                                 {linkItem.label.replace(/&laquo;|&raquo;/g, "")}
@@ -22,9 +22,9 @@ const Paginator = ({ link }) => {
                             <span
                                 className={`flex items-center justify-center px-3 h-8 ${
                                     linkItem.active
-                                        ? "bg-stone-500 text-white"
+                                        ? "bg-stone-600 text-white"
                                         : "text-gray-500 bg-white border border-gray-300"
-                                } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                                } hover:bg-gray-100 hover:text-gray-700 `}
                             >
                                 {/* Remove &laquo; and &raquo; entities from the label */}
                                 {linkItem.label.replace(/&laquo;|&raquo;/g, "")}

@@ -3,19 +3,6 @@ import PesananTable from "@/Components/Fragments/Tables/PesananTable";
 import AdminLayout from "@/Layouts/AdminLayout";
 import Alert from "@/Components/Elements/Alert";
 
-const getStatusClassName = (status) => {
-    switch (status) {
-        case "Pending":
-            return "text-yellow-500";
-        case "Success":
-            return "text-green-500";
-        case "Ditolak":
-            return "text-red-500";
-        default:
-            return "";
-    }
-};
-
 const Pesanan = (props) => {
     const { auth, pages, title, pesanan, allPesanan, flash } = props;
     return (
@@ -29,7 +16,6 @@ const Pesanan = (props) => {
                     <PesananTable
                         pesanans={pesanan.data}
                         allPesanan={allPesanan}
-                        getStatusClassName={getStatusClassName}
                     />
                     <div className="flex justify-start py-4">
                         <Paginator link={pesanan.links} flash={flash} />

@@ -2,32 +2,10 @@ import React, { useState } from "react";
 import ConfirmationModal from "../Modal/ConfirmationModal";
 import FormattedDate from "@/Components/Elements/FormattedDate";
 import AlertNoFound from "@/Components/Elements/AlertNotFound";
-import FormSearch from "../Form/FormSearch";
+import SearchInput from "@/Components/Elements/Input/SearchInput";
+import StatusColor from "@/Components/Elements/StatusColor";
 
-const TableHeader = () => (
-    <thead className="text-xs text-gray-700 uppercase bg-stone-100 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-            <th scope="col" className="px-6 py-3">
-                Nama produk
-            </th>
-            <th scope="col" className="px-6 py-3">
-                Nama pemesan
-            </th>
-            <th scope="col" className="px-6 py-3">
-                Tanggal pemesanan
-            </th>
-            <th scope="col" className="px-6 py-3">
-                Status
-            </th>
-            <th scope="col" className="px-6 py-3">
-                Action
-            </th>
-        </tr>
-    </thead>
-);
-
-
-const PesananTable = ({ pesanans, allPesanan, getStatusClassName }) => {
+const PesananTable = ({ pesanans, allPesanan }) => {
     // Modal
     const [openModal, setOpenModal] = useState(undefined);
     const props = { openModal, setOpenModal };
@@ -49,13 +27,29 @@ const PesananTable = ({ pesanans, allPesanan, getStatusClassName }) => {
             return ternak.nama.toLowerCase().includes(normalizedKeyword);
         })
         : pesanans;
+
+    const tableHead = [
+        'Nama Produk',
+        'Nama pemesan',
+        'Tanggal pemesanan',
+        'Status',
+        'Action'
+    ];
     
     return (
         <>
-            <FormSearch keyword={searchKeyword} onChange={handleSearchInputChange} size={'lg:w-1/2'} />
+            <SearchInput keyword={searchKeyword} onChange={handleSearchInputChange} size={'lg:w-1/2'} />
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <TableHeader />
+                <table className="w-full text-sm text-left text-gray-500">
+                    <thead className="text-sm text-gray-700 uppercase bg-white border-b-2 border-stone-200">
+                        <tr>
+                            {tableHead.map((item) => (
+                                <th scope="col" className="px-6 py-3">
+                                    {item}
+                                </th>
+                            ))}
+                        </tr>
+                    </thead>
                     <tbody>
                         {filteredPesanans.length > 0 ? (
                             filteredPesanans.map((item) => (
@@ -78,13 +72,13 @@ const PesananTable = ({ pesanans, allPesanan, getStatusClassName }) => {
                                     <td className="px-6 py-4">
                                         <FormattedDate date={item.created_at} />
                                     </td>
-                                    <td className={`px-6 py-4 ${getStatusClassName(item.status)}`}>
+                                    <td className={`px-6 py-4 ${StatusColor(item.status)}`}>
                                         {item.status}
                                     </td>
 
                                     <td className="px-6 py-4">
                                         <button
-                                            className="px-3 py-2 text-xs font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300"
+                                            className="px-3 py-2 text-xs font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300"
                                             onClick={() =>
                                                 props.setOpenModal(
                                                     `pup-up${item.id}`
@@ -114,6 +108,6 @@ const PesananTable = ({ pesanans, allPesanan, getStatusClassName }) => {
             </div>
         </>
     );
-}; 
+};
 
 export default PesananTable;

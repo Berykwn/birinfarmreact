@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "@inertiajs/react";
-import AlertNoFound from "@/Components/Elements/AlertNotFound";
-import FormSearch from "../Form/FormSearch";
 
-import { Button, Modal } from 'flowbite-react';
-import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import AlertNoFound from "@/Components/Elements/AlertNotFound";
 import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
+import SearchInput from "@/Components/Elements/Input/SearchInput";
 
 const TernakTable = ({ allTernak, ternaks }) => {
     const [searchKeyword, setSearchKeyword] = useState("");
@@ -28,6 +26,13 @@ const TernakTable = ({ allTernak, ternaks }) => {
         })
         : ternaks;
 
+    const tableHead = [
+        'Nama Produk',
+        'Kode ring',
+        'Kode produk',
+        'Action'
+    ];
+
     return (
         <>
             <div className="flex justify-between">
@@ -40,25 +45,18 @@ const TernakTable = ({ allTernak, ternaks }) => {
                     </Link>
                 </div>
                 <div className="basis-1/2">
-                    <FormSearch keyword={searchKeyword} onChange={handleSearchInputChange} />
+                    <SearchInput keyword={searchKeyword} onChange={handleSearchInputChange} />
                 </div>
             </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-sm text-gray-700 uppercase bg-white border-b-2 border-stone-200">
                         <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Nama produk
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Kode ring
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Kode ternak
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Action
-                            </th>
+                            {tableHead.map((item) => (
+                                <th scope="col" className="px-6 py-3">
+                                    {item}
+                                </th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>

@@ -2,6 +2,7 @@ import Alert from "@/Components/Elements/Alert";
 import TransactionTable from "@/Components/Fragments/Tables/TransactionTable";
 import MainLayout from "@/Layouts/MainLayout";
 
+
 const Transaksi = (props) => {
     const { title, pages, auth, flash, transactions } = props;
     return (
@@ -11,7 +12,7 @@ const Transaksi = (props) => {
                     <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white"></h2>
                     {flash.message && <Alert message={flash.message} />}
                     <div
-                        className="p-4 my-2 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
+                        className="p-4 my-2 text-sm text-gray-800 rounded-lg bg-gray-50"
                         role="alert"
                     >
                         <span class="font-medium">Dark alert!</span> Change a
@@ -20,7 +21,7 @@ const Transaksi = (props) => {
                     <div className="relative overflow-x-auto">
                         <TransactionTable transaction={transactions} />
                     </div>
-                </div>
+                </div> 
             </section>
         </MainLayout>
     );

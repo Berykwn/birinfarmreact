@@ -9,7 +9,7 @@ const NavbarAdminHeader = ({ auth }) => {
                 <a href="https://flowbite.com" className="flex items-center">
                     <img
                         src="http://127.0.0.1:8000/img/loader.png"
-                        className="h-8 mr-3"
+                        className="w-8 h-8 mr-3"
                         alt="birinfarmlogo"
                     />
                     <span className="self-center text-2xl font-semibold whitespace-nowrap ">

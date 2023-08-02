@@ -1,6 +1,6 @@
 import Icon from "@/Components/Elements/Icon";
 
-const FormSearch = ({keyword, onChange, size}) => {
+const SearchInput = ({keyword, onChange, size}) => {
     return (
         <form>
             <div className={`relative mb-4 ${size}`}>
@@ -20,4 +20,4 @@ const FormSearch = ({keyword, onChange, size}) => {
     )
 }
 
-export default FormSearch
+export default SearchInput
