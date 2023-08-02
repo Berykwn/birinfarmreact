@@ -5,18 +5,18 @@ import { Link } from "@inertiajs/react";
 
 const ListTernakHeader = ({ handleSearch }) => {
     return (
-        <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
+        <div className="bg-stone-100 border border-gray-200 rounded-lg p-8 md:p-12 mb-8">
             <Link
                 href="#"
-                className="bg-slate-100 text-lime-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-blue-400 mb-2"
+                className="bg-slate-100 text-lime-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md mb-2"
             >
                 <Icon iconName={"camera"} />
                 Tutorial
             </Link>
-            <h1 className="text-gray-900 dark:text-white text-3xl md:text-5xl font-extrabold mb-2">
+            <h1 className="text-gray-900 text-3xl md:text-5xl font-extrabold mb-2">
                 Produk ternak BirinFarm
             </h1>
-            <p className="text-lg font-normal text-gray-500 dark:text-gray-400 mb-6">
+            <p className="text-lg font-normal text-gray-500 mb-6">
                 "BirinFarm memiliki beragam produk ternak yang unggul,
                 dihasilkan dengan standar kualitas tinggi dan tekad kuat untuk
                 memenuhi kebutuhan pasar."
@@ -29,7 +29,7 @@ const ListTernakHeader = ({ handleSearch }) => {
                     <input
                         type="search"
                         id="default-search"
-                        className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-lime-50 focus:border-lime-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-lime-50 focus:border-lime-500"
                         placeholder="Cari Produk birinfarm..."
                         onChange={(e) => handleSearch(e.target.value)}
                     />
@@ -55,7 +55,7 @@ const ListTernak = ({ ternaks }) => {
             <ListTernakHeader handleSearch={handleSearch} />
             {filteredTernaks.length === 0 ? (
                 <div
-                    className="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    className="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
                     role="alert"
                 >
                     <Icon iconName={"alert"} />

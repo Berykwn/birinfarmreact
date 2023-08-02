@@ -4,15 +4,15 @@ import { Link } from "@inertiajs/react";
 
 const NavbarAdminHeader = ({ auth }) => {
     return (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900">
+        <nav className="bg-white border-gray-200">
             <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
                 <a href="https://flowbite.com" className="flex items-center">
                     <img
-                        src="img/loader.png"
+                        src="http://127.0.0.1:8000/img/loader.png"
                         className="h-8 mr-3"
                         alt="birinfarmlogo"
                     />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap ">
                         Birinfarm.
                     </span>
                 </a>
@@ -35,15 +35,16 @@ const NavbarAdminHeader = ({ auth }) => {
 };
 
 const navbarAdminLinks = [
-    { url: "dashboard", label: "Dashboard" },
-    { url: "pesanan", label: "Pesanan" },
+    { url: 'dashboard', label: "Dashboard" },
+    { url: 'dashboard.pesanan', label: "Pesanan" },
+    { url: 'dashboard.ternak', label: "Ternak" },
 ];
 
 const NavbarAdminMenu = ({ pages, children, url }) => (
     <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-md">
         <li
             className={`text-slate-700 ${
-                pages === url ? "border-b-4 border-lime-600 hover:border-0" : ""
+                pages === children ? "border-b-4 border-lime-600 hover:border-0" : ""
             }`}
         >
             <Link href={route(url)}>{children}</Link>
@@ -55,7 +56,7 @@ const NavbarAdmin = ({ auth, pages }) => {
     return (
         <>
             <NavbarAdminHeader auth={auth} />
-            <nav className="bg-stone-100 dark:bg-gray-700">
+            <nav className="bg-stone-100 ">
                 <div className="max-w-screen-xl px-4 py-3 mx-auto">
                     <div className="flex items-center">
                         {navbarAdminLinks.map(({ url, label }) => (

@@ -1,5 +1,6 @@
 import React from "react";
 import AdminLayout from "@/Layouts/AdminLayout";
+import ChartPemesanan from "@/Components/Fragments/ChartPemesanan";
 
 export default function Dashboard(props) {
     const { auth, pages, title } = props;
@@ -19,33 +20,8 @@ export default function Dashboard(props) {
                             Anda.
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-4 gap-4">
-                        <a
-                            href="#"
-                            className="block max-w-sm p-6 bg-stone-100 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                        >
-                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                Pemesanan
-                            </h5>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                                Here are the biggest enterprise technology
-                                acquisitions of 2021 so far, in reverse
-                                chronological order.
-                            </p>
-                        </a>
-                        <a
-                            href="#"
-                            className="block max-w-sm p-6 bg-stone-100 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                        >
-                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                Ternak
-                            </h5>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">
-                                Here are the biggest enterprise technology
-                                acquisitions of 2021 so far, in reverse
-                                chronological order.
-                            </p>
-                        </a>
+                    <div className="flex flex-wrap max-w-2xl">
+                        <ChartPemesanan />
                     </div>
                 </div>
             </section>

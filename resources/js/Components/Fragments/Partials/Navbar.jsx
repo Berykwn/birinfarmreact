@@ -3,7 +3,7 @@ import { Dropdown } from "flowbite-react";
 import { Link } from "@inertiajs/react";
 
 const NavbarHeader = ({ auth }) => (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-white border-gray-200">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl lg:px-0 px-4 py-4">
             <Link href="/" className="flex items-center">
                 <img
@@ -11,12 +11,12 @@ const NavbarHeader = ({ auth }) => (
                     className="h-10 mr-3"
                     alt="Application Logo"
                 />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <span className="self-center text-2xl font-semibold whitespace-nowrap">
                     Birinfarm.
                 </span>
             </Link>
             <div className="flex items-center">
-                <span className="mr-6 text-sm text-gray-500 dark:text-white hover:underline">
+                <span className="mr-6 text-sm text-gray-500 hover:underline">
                     birinfarm.com
                 </span>
                 {!auth.user ? (
@@ -26,13 +26,13 @@ const NavbarHeader = ({ auth }) => (
                     >
                         <Link
                             href={route("login")}
-                            className="px-4 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600"
+                            className="px-4 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2"
                         >
                             Login
                         </Link>
                         <Link
                             href={route("register")}
-                            className="px-4 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600"
+                            className="px-4 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2"
                         >
                             Register
                         </Link>
@@ -87,7 +87,7 @@ const NavbarLink = ({ pages, children, url }) => (
 const Navbar = ({ pages, auth }) => (
     <>
         <NavbarHeader auth={auth} />
-        <nav className="bg-stone-100 dark:bg-gray-700">
+        <nav className="bg-stone-100 ">
             <div className="max-w-screen-xl lg:px-0 px-4 py-3 mx-auto text-md">
                 <div className="flex items-center">
                     {navbarLinks.map(({ url, label }) => (

@@ -1,25 +1,38 @@
-import Icon from "@/Components/Elements/Icon";
 import Paginator from "@/Components/Elements/Paginator";
 import PesananTable from "@/Components/Fragments/Tables/PesananTable";
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Link } from "@inertiajs/react";
+import Alert from "@/Components/Elements/Alert";
+
+const getStatusClassName = (status) => {
+    switch (status) {
+        case "Pending":
+            return "text-yellow-500";
+        case "Success":
+            return "text-green-500";
+        case "Ditolak":
+            return "text-red-500";
+        default:
+            return "";
+    }
+};
 
 const Pesanan = (props) => {
-    const { auth, pages, title, pesanan, allPesanan } = props;
-    console.log(pesanan);
+    const { auth, pages, title, pesanan, allPesanan, flash } = props;
     return (
         <AdminLayout title={title} pages={pages} auth={auth}>
-            <section className="bg-white dark:bg-gray-900">
+            <section className="bg-stone-100 dark:bg-gray-900">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
                     <h1 className="text-stone-900 dark:text-white text-2xl md:text-4xl font-extrabold mb-2">
                         Daftar pesanan
                     </h1>
+                    {flash.message && <Alert message={flash.message} />}
                     <PesananTable
                         pesanans={pesanan.data}
                         allPesanan={allPesanan}
+                        getStatusClassName={getStatusClassName}
                     />
                     <div className="flex justify-start py-4">
-                        <Paginator link={pesanan.links} />
+                        <Paginator link={pesanan.links} flash={flash} />
                     </div>
                 </div>
             </section>

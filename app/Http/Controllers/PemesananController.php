@@ -75,10 +75,14 @@ class PemesananController extends Controller
 
         return Inertia::render('Admin/Pesanan/Pesanan', [
             'title' => 'Pesanan',
-            'pages' => 'pesanan',
+            'pages' => 'Pesanan',
             'pesanan' => $pesanan,
             'allPesanan' => $allPesanan,
         ]);
+    }
+
+    public function chartData() {
+        
     }
 
     public function confirmPesanan(Request $request, $id)
@@ -86,10 +90,21 @@ class PemesananController extends Controller
         $pesanan = Pemesanan::findOrFail($id);
 
         $pesanan->status = 'Success';
+ 
+        $pesanan->save();
+
+        return redirect()->route('dashboard.pesanan')->with('message', 'Pesanan telah di konfirmasi!');
+    }
+
+    public function tolakPesanan(Request $request, $id)
+    {
+        $pesanan = Pemesanan::findOrFail($id);
+
+        $pesanan->status = 'Ditolak';
 
         $pesanan->save();
 
-        return redirect('pesanan')->with('message', 'Pesanan telah di konfirmasi!');
+        return redirect('pesanan')->with('message', 'Pesanan telah di Tolak!');
     }
 
     /**

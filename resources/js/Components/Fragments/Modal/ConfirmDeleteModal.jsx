@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Button } from "flowbite-react";
 import { router } from "@inertiajs/react";
 
-const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
+const ConfirmDeleteModal = ({ item, openModal, setOpenModal }) => {
     return (
         <Modal
             show={openModal === `pup-up${item.id}`}
@@ -11,21 +11,21 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
             onClose={() => setOpenModal(undefined)} 
         >
             <Modal.Header>
-                {item.ternak.nama}
+                {item.nama}
             </Modal.Header>
             <Modal.Body>
                 <div className="text-center">
                     <h3 className="mb-5 text-lg font-normal text-gray-500">
-                        Apakah anda yakin akan mengkonfirmasi pesanan{" "}
+                        Apakah anda yakin akan menghapus{" "}
                         <span className="font-semibold">
-                            {item.ternak.nama}
-                        </span>
+                            {item.nama} 
+                        </span> ?
                     </h3>
                     <div className="flex justify-center gap-4">
                         <Button
-                            color="success"
+                            color="failure"
                             onClick={() => {
-                                router.post(`/dashboard/confirmpesanan/${item.id}`);
+                                router.post(`/dashboard/ternak/delete/${item.id}`);
                                 setOpenModal(undefined);
                             }}
                         >
@@ -44,4 +44,4 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
     );
 };
 
-export default ConfirmationModal;
+export default ConfirmDeleteModal;

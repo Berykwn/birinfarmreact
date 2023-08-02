@@ -8,17 +8,17 @@ const TernakCard = (props) => {
     const formattedDeskripsi =
         deskripsi.length > 100 ? deskripsi.slice(0, 100) + "..." : deskripsi;
     return (
-        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow">
             <div className="relative flex-shrink-0 h-48 w-full">
                 <img
                     className="absolute object-cover h-full w-full rounded-t-md"
-                    src={`img/${foto}`}
+                    src={`storage/img/ternaks/${foto}`}
                     alt={foto}
                 />
             </div>
             <div className="p-5">
                 <a href="#">
-                    <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="text-xl font-bold tracking-tight text-gray-900">
                         {kode_ternak} - {nama}
                     </h5>
                 </a>
@@ -27,14 +27,14 @@ const TernakCard = (props) => {
                         <FormattedDate date={updated_at} />
                     </time>
                 </div>
-                <p className="mb-3 mt-3 font-normal text-gray-700 dark:text-gray-400">
+                <p className="mb-3 mt-3 font-normal text-gray-700 ">
                     {formattedDeskripsi}
                 </p>
                 <Link
                     href={route("ternak.detail")}
                     data={{ id: id }}
                     method="get"
-                    className="inline-flex items-center font-medium text-lime-600 dark:text-lime-500 hover:underline"
+                    className="inline-flex items-center font-medium text-lime-600 hover:underline"
                 >
                     Lihat selengkapnya
                     <Icon iconName="right-arrow" />

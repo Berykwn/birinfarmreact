@@ -17,7 +17,7 @@ class Pemesanan extends Model
         'kontak',
         'alamat',
         'catatan',
-        'status'
+        'status',
     ];
 
     public function ternak()

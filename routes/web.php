@@ -23,9 +23,18 @@ Route::middleware('auth')->group(function () {
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
 
     Route::group(['middleware' => 'checkRole:admin'], function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-        Route::get('/pesanan', [PemesananController::class, 'index'])->name('pesanan');
-        Route::post('/confirmpesanan/{id}', [PemesananController::class, 'confirmPesanan'])->name('pesanan.confirm');
+        Route::prefix('dashboard')->group(function () {
+            Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/pesanan', [PemesananController::class, 'index'])->name('dashboard.pesanan');
+            Route::post('/confirmpesanan/{id}', [PemesananController::class, 'confirmPesanan'])->name('pesanan.confirm');
+
+            Route::get('/ternak', [TernakController::class, 'index'])->name('dashboard.ternak');
+            Route::get('/ternak/tambah', [TernakController::class, 'create'])->name('dashboard.ternak.create');
+            Route::get('/ternak/edit', [TernakController::class, 'edit'])->name('dashboard.ternak.edit');
+            Route::post('/ternak/store', [TernakController::class, 'store'])->name('dashboard.ternak.store');
+            Route::post('/ternak/update/{id}', [TernakController::class, 'update'])->name('dashboard.ternak.update');
+            Route::post('/ternak/delete/{id}', [TernakController::class, 'destroy'])->name('dashboard.ternak.destroy');
+        });
     });
 
     Route::group(['middleware' => 'checkRole:user'], function () {
@@ -37,8 +46,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/transaksi', [PemesananController::class, 'Transaksi'])->name('transaksi');
         Route::get('/cetak', [PemesananController::class, 'cetakNota'])->name('cetakNota');
     });
-
 });
+
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
