@@ -12,12 +12,9 @@ const Pesanan = (props) => {
                     <h1 className="text-stone-900 text-2xl md:text-4xl font-extrabold mb-2">
                         Data ternak
                     </h1>
-                    
+
                     {flash.message && <Alert message={flash.message} />}
-                    <TernakTable
-                        ternaks={ternak.data}
-                        allTernak={allTernak}
-                    />
+                    <TernakTable ternaks={ternak.data} allTernak={allTernak} />
                     <div className="flex justify-start py-4">
                         <Paginator link={ternak.links} flash={flash} />
                     </div>

@@ -12,7 +12,7 @@ const TernakCard = (props) => {
             <div className="relative flex-shrink-0 h-48 w-full">
                 <img
                     className="absolute object-cover h-full w-full rounded-t-md"
-                    src={`storage/img/ternaks/${foto}`}
+                    src={`/storage/img/ternaks/${foto}`}
                     alt={foto}
                 />
             </div>

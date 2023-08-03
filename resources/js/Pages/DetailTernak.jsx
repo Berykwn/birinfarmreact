@@ -9,7 +9,7 @@ const DetailTernak = (props) => {
                     <div className="lg:pl-24 lg:pr-4 lg:py-16">
                         <div className="relative lg:rounded-lg overflow-hidden">
                             <img
-                                src={`img/${ternakDetail.foto}`}
+                                src={`/storage/img/ternaks/${ternakDetail.foto}`}
                                 alt={ternakDetail.nama}
                                 className="w-full max-w-200 max-h-200 object-cover animate-fade-in cursor-pointer lg:max-w-none"
                             />
