@@ -10,7 +10,7 @@ const SearchInput = ({keyword, onChange, size}) => {
                 <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-3 pl-10 text-sm text-gray-900 border border-stone-300 rounded-lg bg-stone-50 focus:ring-lime-900 focus:border-lime-700"
+                    className="block w-full p-3 pl-10 text-sm text-gray-900  border-stone-300 rounded-lg focus:ring-lime-900 focus:border-0"
                     placeholder="Cari ..."
                     value={keyword}
                     onChange={onChange}

@@ -63,7 +63,7 @@ const NavbarHeader = ({ auth }) => (
     </nav>
 );
 
-const navbarLinks = [
+const linkList = [
     { url: "home", label: "Home" },
     { url: "ternak", label: "Ternak" },
     { url: "pemesanan", label: "Pemesanan" },
@@ -72,29 +72,23 @@ const navbarLinks = [
     // { url: "tentang-kami", label: "Tentang kami" },
 ];
 
-const NavbarLink = ({ pages, children, url }) => (
-    <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-md">
-        <li
-            className={`text-slate-700 ${
-                pages === url ? "border-b-4 border-lime-600 hover:border-0" : ""
-            }`}
-        >
-            <Link href={route(url)}>{children}</Link>
-        </li>
-    </ul>
-);
-
 const Navbar = ({ pages, auth }) => (
     <>
         <NavbarHeader auth={auth} />
-        <nav className="bg-stone-100 ">
-            <div className="max-w-screen-xl lg:px-0 px-4 py-3 mx-auto text-md">
+        <nav className="bg-stone-100">
+            <div className="max-w-screen-xl px-4 py-3 mx-auto">
                 <div className="flex items-center">
-                    {navbarLinks.map(({ url, label }) => (
-                        <NavbarLink key={url} url={url} pages={pages}>
-                            {label}
-                        </NavbarLink>
-                    ))}
+                    <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-md">
+                        {linkList.map(({ url, label }) => (
+                            <li
+                                key={url}
+                                className={`text-slate-700 ${pages === label ? "border-b-4 border-lime-700 hover:border-0" : ""
+                                    }`}
+                            >
+                                <Link href={route(url)}>{label}</Link>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </nav>

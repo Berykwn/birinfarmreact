@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { router } from "@inertiajs/react";
+
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -48,7 +49,9 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+
                 <div className="w-full">
+
                     <div className="mt-4">
                         <InputLabel htmlFor="nama_produk" value="Nama Produk" />
                         <TextInput
@@ -61,7 +64,9 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                         />
                         {errors.nama && <InputError message={errors.nama} />}
                     </div>
+
                     <div className="grid gap-6 md:grid-cols-2">
+
                         <div className="mt-4">
                             <InputLabel htmlFor="jumlah_jantan" value="Jumlah Jantan" />
                             <TextInput
@@ -73,6 +78,7 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                             />
                             {errors.jumlah_jantan && <InputError message={errors.jumlah_jantan} />}
                         </div>
+
                         <div className="lg:mt-4">
                             <InputLabel htmlFor="jumlah_betina" value="Jumlah Betina" />
                             <TextInput
@@ -85,6 +91,7 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                             {errors.jumlah_betina && <InputError message={errors.jumlah_betina} />}
                         </div>
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="jenis_ternak" value="Jenis ternak" />
                         <select
@@ -102,6 +109,7 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                         </select>
                         {errors.id_jenis && <InputError message={errors.id_jenis} />}
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="ring" value="Kode ring" />
                         <select
@@ -119,6 +127,7 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                         </select>
                         {errors.id_ring && <InputError message={errors.id_ring} />}
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="kode_ternak" value="Kode ternak" />
                         <TextInput
@@ -131,6 +140,7 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                         />
                         {errors.kode_ternak && <InputError message={errors.kode_ternak} />}
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="deskripsi" value="Deskripsi" />
                         <textarea
@@ -144,6 +154,7 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                         {errors.deskripsi && <InputError message={errors.deskripsi} />}
                     </div>
                 </div>
+
                 <div className="lg:mt-11 md:mt-11">
                     {imageUrl && (
                         <img
@@ -152,8 +163,13 @@ const FormTambahTernak = ({ jenis, ring, errors }) => {
                             className="object-cover w-full rounded-md mb-2"
                         />
                     )}
-                    <TextInput type="file" onChange={handleImageChange} className="block w-full text-xs border border-gray-300 rounded-lg cursor-pointer" />
+                    <TextInput
+                        type="file"
+                        onChange={handleImageChange}
+                        className="block w-full text-xs border border-gray-300 rounded-lg cursor-pointer"
+                    />
                     {errors.foto && <InputError message={errors.foto} />}
+                    
                     <PrimaryButton type="submit" className="mt-3">Submit</PrimaryButton>
                 </div>
             </div>

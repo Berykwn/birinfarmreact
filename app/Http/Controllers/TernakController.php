@@ -20,7 +20,7 @@ class TernakController extends Controller
 
         return Inertia::render('Ternak', [
             'title' => 'Ternak',
-            'pages' => 'ternak',
+            'pages' => 'Ternak',
             'ternak' => new TernakCollection($ternakData),
         ]);
     }
@@ -31,16 +31,11 @@ class TernakController extends Controller
 
         return Inertia::render('DetailTernak', [
             'title' => 'Ternak',
-            'pages' => 'ternak',
+            'pages' => 'Ternak',
             'ternakDetail' => $getTernakById,
         ]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(6);
@@ -54,11 +49,6 @@ class TernakController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return Inertia::render('Admin/Ternak/TambahTernak', [
@@ -68,13 +58,6 @@ class TernakController extends Controller
             'ring' => Ring::all(),
         ]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     public function store(TernakRequest $request)
     {
@@ -91,14 +74,6 @@ class TernakController extends Controller
         return redirect()->route('dashboard.ternak')->with('message', 'Data berita berhasil ditambahkan.');
     }
 
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Ternak  $ternak
-     * @return \Illuminate\Http\Response
-     */
     public function show(Ternak $ternak, Request $request)
     {
         $ternaks = $ternak->with(['jenis_ternak', 'rings'])->find($request->id);
@@ -110,12 +85,6 @@ class TernakController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ternak  $ternak
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Ternak $ternak, Request $request)
     {
         $getTernakById = $ternak->with(['jenis_ternak', 'rings'])->find($request->id);
@@ -129,13 +98,6 @@ class TernakController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Ternak  $ternak
-     * @return \Illuminate\Http\Response
-     */
     public function update(TernakRequest $request, Ternak $ternak, $id)
     {
         $existingTernak = Ternak::findOrFail($id);
@@ -157,14 +119,6 @@ class TernakController extends Controller
         return redirect()->route('dashboard.ternak')->with('message', 'Data berita berhasil diupdate.');
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Ternak  $ternak
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Ternak $ternak, Request $request)
     {
         $ternak = Ternak::find($request->id);

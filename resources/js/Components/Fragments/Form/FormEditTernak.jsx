@@ -36,7 +36,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
         fetch(`/storage/img/ternaks/${ternak.foto}`) // Assuming `ternak.foto` holds the URL of the photo
             .then((response) => response.blob())
             .then((blob) => {
-                setFotoFile(new File([blob], `/storage/img/ternaks/${ternak.foto}` , { type: "image/jpeg" }));
+                setFotoFile(new File([blob], `/storage/img/ternaks/${ternak.foto}`, { type: "image/jpeg" }));
             });
     }, [ternak]);
 
@@ -79,6 +79,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
         <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div className="w-full">
+
                     <div className="mt-4">
                         <InputLabel htmlFor="nama_produk" value="Nama Produk" />
                         <TextInput
@@ -91,6 +92,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                         />
                         {errors.nama && <InputError message={errors.nama} />}
                     </div>
+
                     <div className="grid gap-6 md:grid-cols-2">
                         <div className="mt-4">
                             <InputLabel htmlFor="jumlah_jantan" value="Jumlah Jantan" />
@@ -115,6 +117,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                             {errors.jumlah_betina && <InputError message={errors.jumlah_betina} />}
                         </div>
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="jenis_ternak" value="Jenis ternak" />
                         <select
@@ -132,6 +135,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                         </select>
                         {errors.id_jenis && <InputError message={errors.id_jenis} />}
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="ring" value="Kode ring" />
                         <select
@@ -149,6 +153,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                         </select>
                         {errors.id_ring && <InputError message={errors.id_ring} />}
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="kode_ternak" value="Kode ternak" />
                         <TextInput
@@ -161,6 +166,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                         />
                         {errors.kode_ternak && <InputError message={errors.kode_ternak} />}
                     </div>
+
                     <div className="mt-4">
                         <InputLabel htmlFor="deskripsi" value="Deskripsi" />
                         <textarea
@@ -174,6 +180,7 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                         {errors.deskripsi && <InputError message={errors.deskripsi} />}
                     </div>
                 </div>
+
                 <div className="lg:mt-11 md:mt-11">
                     <img
                         src={
@@ -184,10 +191,16 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                         alt="Selected"
                         className="object-cover w-full rounded-md mb-2"
                     />
-                    <TextInput type="file" onChange={handleImageChange} className="block w-full text-xs border border-gray-300 rounded-lg cursor-pointer" />
+                    <TextInput
+                        type="file"
+                        onChange={handleImageChange}
+                        className="block w-full text-xs border border-gray-300 rounded-lg cursor-pointer"
+                    />
                     {errors.foto && <InputError message={errors.foto} />}
+
                     <PrimaryButton type="submit" className="mt-3">Submit</PrimaryButton>
                 </div>
+
             </div>
         </form>
     );

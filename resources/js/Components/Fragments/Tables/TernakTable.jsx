@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "@inertiajs/react";
 
-import AlertNoFound from "@/Components/Elements/AlertNotFound";
+import AlertNoFound from "@/Components/Elements/Alert/AlertNotFound";
 import ConfirmDeleteModal from "../Modal/ConfirmDeleteModal";
 import SearchInput from "@/Components/Elements/Input/SearchInput";
 
@@ -26,25 +26,19 @@ const TernakTable = ({ allTernak, ternaks }) => {
         })
         : ternaks;
 
-    const tableHead = [
+    const tableHeadList = [
         'Nama Produk',
         'Kode ring',
         'Kode produk',
+        'JUmlah jantan',
+        'Jumlah betina',
         'Action'
     ];
 
     return (
         <>
-            <div className="flex justify-between">
-                <div className="lg:mt-4">
-                    <Link
-                        href={route('dashboard.ternak.create')}
-                        className="px-3 py-2 text-xs font-medium text-center text-white bg-lime-700 rounded-lg hover:bg-lime-800"
-                    >
-                        Tambah Produk
-                    </Link>
-                </div>
-                <div className="basis-1/2">
+            <div className="flexn">
+                <div className="lg:w-1/2">
                     <SearchInput keyword={searchKeyword} onChange={handleSearchInputChange} />
                 </div>
             </div>
@@ -52,8 +46,8 @@ const TernakTable = ({ allTernak, ternaks }) => {
                 <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-sm text-gray-700 uppercase bg-white border-b-2 border-stone-200">
                         <tr>
-                            {tableHead.map((item) => (
-                                <th scope="col" className="px-6 py-3">
+                            {tableHeadList.map((item) => (
+                                <th key={item} scope="col" className="px-6 py-3">
                                     {item}
                                 </th>
                             ))}
@@ -71,6 +65,12 @@ const TernakTable = ({ allTernak, ternaks }) => {
                                     </th>
                                     <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                         {item.kode_ternak}
+                                    </th>
+                                    <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {item.jumlah_jantan}
+                                    </th>
+                                    <th className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        {item.jumlah_betina}
                                     </th>
                                     <td className="px-6 py-4">
                                         <div className="flex space-x-1">

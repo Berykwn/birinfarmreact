@@ -21,8 +21,11 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 
 Route::middleware('auth')->group(function () {
     Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::group(['middleware' => 'checkRole:admin'], function () {
+
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::get('/pesanan', [PemesananController::class, 'index'])->name('dashboard.pesanan');
@@ -39,8 +42,6 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['middleware' => 'checkRole:user'], function () {
         Route::get('/pemesanan', [PemesananController::class, 'pemesananPage'])->name('pemesanan');
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::post('/pemesanan', [PemesananController::class, 'handlePemesanan'])->name('pemesanan.create');
         Route::get('/transaksi', [PemesananController::class, 'Transaksi'])->name('transaksi');

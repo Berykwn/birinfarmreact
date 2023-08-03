@@ -26,24 +26,12 @@ const options = {
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Success',
-      data: [8, 2, 7, 1, 11, 6, ], // Array of data points
-      borderColor: 'rgb(0, 128, 0)', // Green border color
-      backgroundColor: 'rgba(0, 128, 0, 0.5)',
-    },
-  ],
+const ChartPemesanan = ({ chartData }) => {
+  return (
+    <div className='bg-white border border-gray-200 rounded-lg shadow-sm max-w-2xl px-4 py-4 flex justify-center items-center'>
+      {chartData ? <Line data={chartData} options={options} /> : 'Loading chart...'}
+    </div>
+  );
 };
 
-const ChartPemesanan = () => {
-  return (
-    <Line data={data} options={options} />
-  )
-}
-
-export default ChartPemesanan
+export default ChartPemesanan;

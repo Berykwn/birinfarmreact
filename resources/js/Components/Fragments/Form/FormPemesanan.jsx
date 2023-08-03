@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { router } from "@inertiajs/react";
 
-import LabelPemesanan from "@/Components/Elements/Input/LabelPemesanan";
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
 import PrimaryButton from "@/Components/PrimaryButton";
+import InputLabel from "@/Components/Elements/Input/InputLabel";
 
 const FormPemesanan = ({ ternakData, auth, errors }) => {
     const [formValues, setFormValues] = useState({
@@ -12,7 +12,7 @@ const FormPemesanan = ({ ternakData, auth, errors }) => {
         jumlah_jantan: "",
         jumlah_betina: "",
         kontak: "",
-        alamat: "", 
+        alamat: "",
         catatan: "",
     });
 
@@ -39,13 +39,14 @@ const FormPemesanan = ({ ternakData, auth, errors }) => {
     return (
         <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+
                 <div className="sm:col-span-2">
-                    <LabelPemesanan htmlFor="nama_produk" value="Nama Produk" />
+                    <InputLabel htmlFor="nama_produk" value="Nama Produk" />
                     <select
                         name="nama_produk"
                         value={formValues.nama_produk}
                         onChange={handleChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+                        className="text-sm w-full p-2.5 border-gray-300 focus:border-lime-800 focus:ring-lime-800 rounded-md shadow-sm"
                     >
                         <option value="">-- Pilih produk --</option>
                         {ternakData.map((item) => (
@@ -58,8 +59,9 @@ const FormPemesanan = ({ ternakData, auth, errors }) => {
                         <InputError message={errors.id_ternak} />
                     )}
                 </div>
+
                 <div className="w-full">
-                    <LabelPemesanan
+                    <InputLabel
                         htmlFor={"jumlah_jantan"}
                         value={"Jumlah Jantan"}
                     />
@@ -68,44 +70,46 @@ const FormPemesanan = ({ ternakData, auth, errors }) => {
                         name="jumlah_jantan"
                         value={formValues.jumlah_jantan}
                         onChange={handleChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                        className="text-sm w-full p-2.5 mt-2"
                         placeholder="masukan jumlah jantan"
                     />
                     {errors.jumlah_jantan && (
                         <InputError message={errors.jumlah_jantan} />
                     )}
                 </div>
+
                 <div className="w-full">
-                    <LabelPemesanan
+                    <InputLabel
                         htmlFor={"jumlah_betina"}
                         value={"Jumlah Betina"}
                     />
-                    <input
+                    <TextInput
                         type="text"
                         name="jumlah_betina"
                         value={formValues.jumlah_betina}
                         onChange={handleChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                        className="text-sm w-full p-2.5 mt-2"
                         placeholder="masukan jumlah betina"
                     />
                     {errors.jumlah_betina && (
                         <InputError message={errors.jumlah_betina} />
                     )}
                 </div>
+
                 <div className="sm:col-span-2">
-                    <LabelPemesanan htmlFor={"kontak"} value={"Kontak"} />
-                    <input
+                    <InputLabel htmlFor={"kontak"} value={"Kontak"} />
+                    <TextInput
                         type="text"
                         name="kontak"
                         value={formValues.kontak}
                         onChange={handleChange}
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                        className="text-sm w-full p-2.5 mt-2"
                         placeholder="masukan kontak anda"
                     />
                     {errors.kontak && <InputError message={errors.kontak} />}
                 </div>
                 <div className="sm:col-span-2">
-                    <LabelPemesanan htmlFor={"alamat"} value={"Alamat"} />
+                    <InputLabel htmlFor={"alamat"} value={"Alamat"} />
                     <textarea
                         rows="4"
                         name="alamat"
@@ -116,13 +120,11 @@ const FormPemesanan = ({ ternakData, auth, errors }) => {
                     ></textarea>
                     {errors.alamat && <InputError message={errors.alamat} />}
                 </div>
+                
                 <div className="sm:col-span-2">
-                    <label
-                        htmlFor="description"
-                        className="block mb-2 text-sm font-medium text-gray-900 "
-                    >
-                        Catatan
-                    </label>
+                    <InputLabel
+                        htmlFor={"deskripsi"} value={"Deskripsi"}
+                    />
                     <textarea
                         rows="8"
                         name="catatan"
@@ -134,6 +136,7 @@ const FormPemesanan = ({ ternakData, auth, errors }) => {
                     <InputError message={errors.catatan} />
                 </div>
             </div>
+            
             <PrimaryButton type="submit" className="mt-3">Submit</PrimaryButton>
         </form>
     );

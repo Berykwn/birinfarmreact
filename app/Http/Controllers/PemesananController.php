@@ -20,7 +20,7 @@ class PemesananController extends Controller
 
         return Inertia::render('Pemesanan', [
             'title' => 'Pemesanan',
-            'pages' => 'pemesanan',
+            'pages' => 'Pemesanan',
             'ternakData' => new TernakCollection($ternaks)
         ]);
     }
@@ -70,8 +70,8 @@ class PemesananController extends Controller
      */
     public function index()
     {
-        $pesanan = Pemesanan::with(['ternak', 'users'])->latest()->paginate(10);
-        $allPesanan = Pemesanan::with(['ternak', 'users'])->latest()->get();
+        $pesanan = Pemesanan::with(['ternak', 'users'])->orderByDesc('updated_at')->paginate(10);
+        $allPesanan = Pemesanan::with(['ternak', 'users'])->get();
 
         return Inertia::render('Admin/Pesanan/Pesanan', [
             'title' => 'Pesanan',

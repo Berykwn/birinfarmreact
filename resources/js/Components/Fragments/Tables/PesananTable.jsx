@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ConfirmationModal from "../Modal/ConfirmationModal";
 import FormattedDate from "@/Components/Elements/FormattedDate";
-import AlertNoFound from "@/Components/Elements/AlertNotFound";
+import AlertNoFound from "@/Components/Elements/Alert/AlertNotFound";
 import SearchInput from "@/Components/Elements/Input/SearchInput";
 import StatusColor from "@/Components/Elements/StatusColor";
 
@@ -28,14 +28,14 @@ const PesananTable = ({ pesanans, allPesanan }) => {
         })
         : pesanans;
 
-    const tableHead = [
+    const tableHeadList = [
         'Nama Produk',
         'Nama pemesan',
         'Tanggal pemesanan',
         'Status',
         'Action'
     ];
-    
+
     return (
         <>
             <SearchInput keyword={searchKeyword} onChange={handleSearchInputChange} size={'lg:w-1/2'} />
@@ -43,19 +43,19 @@ const PesananTable = ({ pesanans, allPesanan }) => {
                 <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-sm text-gray-700 uppercase bg-white border-b-2 border-stone-200">
                         <tr>
-                            {tableHead.map((item) => (
-                                <th scope="col" className="px-6 py-3">
+                            {tableHeadList.map((item) => (
+                                <th key={item} scope="col" className="px-6 py-3">
                                     {item}
                                 </th>
                             ))}
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="bg-white">
                         {filteredPesanans.length > 0 ? (
                             filteredPesanans.map((item) => (
                                 <tr
                                     key={item.id}
-                                    className="bg-white"
+                                    
                                 >
                                     <th
                                         scope="row"
@@ -63,12 +63,12 @@ const PesananTable = ({ pesanans, allPesanan }) => {
                                     >
                                         {item.ternak.nama}
                                     </th>
-                                    <th
+                                    <td
                                         scope="row"
                                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                                     >
                                         {item.users.name}
-                                    </th>
+                                    </td>
                                     <td className="px-6 py-4">
                                         <FormattedDate date={item.created_at} />
                                     </td>

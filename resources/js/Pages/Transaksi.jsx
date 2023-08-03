@@ -1,4 +1,4 @@
-import Alert from "@/Components/Elements/Alert";
+import Alert from "@/Components/Elements/Alert/AlertSuccess";
 import TransactionTable from "@/Components/Fragments/Tables/TransactionTable";
 import MainLayout from "@/Layouts/MainLayout";
 

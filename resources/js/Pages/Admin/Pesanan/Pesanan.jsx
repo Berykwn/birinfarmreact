@@ -1,7 +1,7 @@
+import AlertSuccess from "@/Components/Elements/Alert/AlertSuccess";
 import Paginator from "@/Components/Elements/Paginator";
 import PesananTable from "@/Components/Fragments/Tables/PesananTable";
 import AdminLayout from "@/Layouts/AdminLayout";
-import Alert from "@/Components/Elements/Alert";
 
 const Pesanan = (props) => {
     const { auth, pages, title, pesanan, allPesanan, flash } = props;
@@ -12,7 +12,7 @@ const Pesanan = (props) => {
                     <h1 className="text-stone-900 dark:text-white text-2xl md:text-4xl font-extrabold mb-2">
                         Daftar pesanan
                     </h1>
-                    {flash.message && <Alert message={flash.message} />}
+                    {flash.message && <AlertSuccess message={flash.message} />}
                     <PesananTable
                         pesanans={pesanan.data}
                         allPesanan={allPesanan}
