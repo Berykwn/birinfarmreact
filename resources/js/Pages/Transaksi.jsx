@@ -2,7 +2,6 @@ import Alert from "@/Components/Elements/Alert";
 import TransactionTable from "@/Components/Fragments/Tables/TransactionTable";
 import MainLayout from "@/Layouts/MainLayout";
 
-
 const Transaksi = (props) => {
     const { title, pages, auth, flash, transactions } = props;
     return (
@@ -15,13 +14,14 @@ const Transaksi = (props) => {
                         className="p-4 my-2 text-sm text-gray-800 rounded-lg bg-gray-50"
                         role="alert"
                     >
-                        <span class="font-medium">Dark alert!</span> Change a
-                        few things up and try submitting again.
+                        <span class="font-medium">
+                            Nomor Admin : 08813826107
+                        </span>
                     </div>
                     <div className="relative overflow-x-auto">
                         <TransactionTable transaction={transactions} />
                     </div>
-                </div> 
+                </div>
             </section>
         </MainLayout>
     );
