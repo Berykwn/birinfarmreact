@@ -4,6 +4,10 @@ const CetakNota = ({ notaData, jenis, ring }) => {
     const total = notaData.jumlah_jantan + notaData.jumlah_betina;
     const currentDate = new Date().toLocaleDateString();
 
+    const handlePrint = () => {
+        window.print();
+    };
+
     return (
         <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto bg-white rounded-lg shadow-lg p-8">
@@ -20,16 +24,16 @@ const CetakNota = ({ notaData, jenis, ring }) => {
                 <div className="">
                     <div className="py-6">
                         <h3 className="text-sm font-light text-gray-900">
-                            Tanggal : Date: {currentDate}
+                            Tanggal: {currentDate}
                         </h3>
                         <h3 className="text-sm font-light text-gray-900">
-                            Nama pembeli : {notaData.users.name}
+                            Nama Pembeli: {notaData.users.name}
                         </h3>
                         <h3 className="text-sm font-light text-gray-900">
-                            Kontak : {notaData.kontak}
+                            Kontak: {notaData.kontak}
                         </h3>
                         <h3 className="text-sm font-light text-gray-900">
-                            Alamat : {notaData.alamat}
+                            Alamat: {notaData.alamat}
                         </h3>
                     </div>
                     <div className="">
@@ -38,19 +42,19 @@ const CetakNota = ({ notaData, jenis, ring }) => {
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
-                                            Nama produk
+                                            Nama Produk
                                         </th>
                                         <th scope="col" className="px-6 py-3">
                                             Jenis
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Kode ring
+                                            Kode Ring
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Jumlah jantan
+                                            Jumlah Jantan
                                         </th>
                                         <th scope="col" className="px-6 py-3">
-                                            Jumlah betina
+                                            Jumlah Betina
                                         </th>
                                         <th scope="col" className="px-6 py-3">
                                             Total
@@ -84,10 +88,18 @@ const CetakNota = ({ notaData, jenis, ring }) => {
                         </div>
                     </div>
                     <div className="py-4">
-                        <h5 className="text-sm">note :</h5>
+                        <h5 className="text-sm">Catatan:</h5>
                         <p className="text-sm">{notaData.catatan}</p>
                     </div>
                 </div>
+
+                {/* Tombol untuk cetak */}
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={handlePrint}
+                >
+                    Cetak
+                </button>
             </div>
         </div>
     );

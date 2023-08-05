@@ -9,11 +9,11 @@ const AlertNoFound = () => {
             <Icon iconName={"alert"} />
             <span className="sr-only">Info</span>
             <div>
-                <span className="font-medium">Ra dodol!!</span> silahkan cari
-                kata kunci yang lain
+                <span className="font-medium">Kosong</span> silahkan cari kata
+                kunci yang lain
             </div>
         </div>
     );
 };
 
-export default AlertNoFound
+export default AlertNoFound;

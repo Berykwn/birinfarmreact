@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::get('/pesanan', [PemesananController::class, 'index'])->name('dashboard.pesanan');
-            Route::post('/confirmpesanan/{id}', [PemesananController::class, 'confirmPesanan'])->name('pesanan.confirm');
+            Route::post('/pesanan/confirm/{id}', [PemesananController::class, 'confirmPesanan'])->name('pesanan.confirm');
 
             Route::get('/ternak', [TernakController::class, 'index'])->name('dashboard.ternak');
             Route::get('/ternak/tambah', [TernakController::class, 'create'])->name('dashboard.ternak.create');

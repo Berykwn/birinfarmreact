@@ -28,8 +28,7 @@ const DetailTernak = (props) => {
                                     Jumlah jantan: {ternakDetail.jumlah_jantan}{" "}
                                 </span>
                                 <span className="text-slate-500">
-                                    • Jumlah jantan:{" "}
-                                    {ternakDetail.jumlah_jantan}
+                                    Jumlah betina: {ternakDetail.jumlah_betina}{" "}
                                 </span>
                             </span>
                         </div>
