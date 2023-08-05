@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('id_jenis')->nullable();
             $table->unsignedBigInteger('id_ring')->nullable();
+            $table->string('nama');
             $table->integer('jumlah_jantan');
             $table->integer('jumlah_betina');
             $table->string('foto')->nullable();

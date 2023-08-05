@@ -1,11 +1,9 @@
 import MainLayout from "@/Layouts/MainLayout";
-import { Link } from "@inertiajs/react";
 
 const DetailTernak = (props) => {
-    const { title, pages, ternakDetail } = props;
-    console.log(ternakDetail)
+    const { title, pages, ternakDetail, auth } = props;
     return (
-        <MainLayout title={title} pages={pages}>
+        <MainLayout title={title} pages={pages} auth={auth}>
             <section className="bg-off-white-gray">
                 <div className="container mx-auto flex flex-col md:flex-row">
                     <div className="lg:pl-24 lg:pr-4 lg:py-16">
@@ -19,14 +17,8 @@ const DetailTernak = (props) => {
                     </div>
                     <div className="px-14 lg:py-16 py-4 pl-0 max-w-md mx-auto overflow-hidden md:max-w-2xl">
                         <div className="flex">
-                            <Link
-                                href={route("pemesanan")}
-                                className="focus:outline-none text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800"
-                            >
-                                Pesan
-                            </Link>
                             <h2 className="block mt-1 text-2xl leading-tight font-medium text-black hover:underline">
-                                {ternakDetail.jenis_ternak.nama} {" - "}{" "}
+                                {ternakDetail.nama} {" - "}{" "}
                                 {ternakDetail.kode_ternak}
                             </h2>
                         </div>

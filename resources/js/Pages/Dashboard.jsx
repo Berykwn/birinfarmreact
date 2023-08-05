@@ -1,22 +1,19 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import React from "react";
+import AdminLayout from "@/Layouts/AdminLayout";
+import ChartPemesanan from "@/Components/Fragments/ChartPemesanan";
 
 export default function Dashboard(props) {
+    const { auth, pages, title, chartData } = props;
     return (
-        <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>}
-        >
-            <Head title="Dashboard" />
-
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">You're logged in!</div>
-                    </div>
+        <AdminLayout title={title} pages={pages} auth={auth}>
+            <section className="bg-stone-100 dark:bg-gray-900">
+                <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+                    <h1 className="text-gray-900 text-3xl md:text-5xl font-extrabold mb-2">
+                        Wellcome! {auth.user.name}
+                    </h1>
+                    <ChartPemesanan chartData={chartData} />
                 </div>
-            </div>
-        </AuthenticatedLayout>
+            </section>
+        </AdminLayout>
     );
 }

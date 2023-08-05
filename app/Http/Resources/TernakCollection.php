@@ -18,4 +18,19 @@ class TernakCollection extends ResourceCollection
             'data' => $this->collection
         ];
     }
+
+    // $ternakData = $this->collection->map(function ($item) {
+    //     return [
+    //         'id' => $item->id,
+    //         'foto' => $item->foto,
+    //         'nama' => $item->nama,
+    //         'deskripsi' => $item->deskripsi,
+    //         'kode_ternak' => $item->kode_ternak,
+    //         'updated_at' => $item->updated_at,
+    //     ];
+    // });
+
+    // return [
+    //     'data' => $ternakData,
+    // ];
 }

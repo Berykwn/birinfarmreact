@@ -20,6 +20,7 @@ class TernakFactory extends Factory
         return [
             'id_jenis' => 1,
             'id_ring' => 1,
+            'nama' => fake()->name(),
             'jumlah_jantan' => rand(1, 50),
             'jumlah_betina' => rand(1, 50),
             'foto' => 'default.png',
