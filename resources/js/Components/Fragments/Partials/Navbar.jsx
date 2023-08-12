@@ -75,7 +75,7 @@ const linkList = [
 const Navbar = ({ pages, auth }) => (
     <>
         <NavbarHeader auth={auth} />
-        <nav className="bg-stone-100">
+        <nav className="bg-base-100">
             <div className="max-w-screen-xl px-4 py-3 mx-auto">
                 <div className="flex items-center">
                     <ul className="flex flex-row font-medium mt-0 mr-6 space-x-8 text-md">

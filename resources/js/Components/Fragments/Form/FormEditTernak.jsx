@@ -36,7 +36,11 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
         fetch(`/storage/img/ternaks/${ternak.foto}`) // Assuming `ternak.foto` holds the URL of the photo
             .then((response) => response.blob())
             .then((blob) => {
-                setFotoFile(new File([blob], `/storage/img/ternaks/${ternak.foto}`, { type: "image/jpeg" }));
+                setFotoFile(
+                    new File([blob], `/storage/img/ternaks/${ternak.foto}`, {
+                        type: "image/jpeg",
+                    })
+                );
             });
     }, [ternak]);
 
@@ -79,7 +83,6 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
         <form onSubmit={handleSubmit}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <div className="w-full">
-
                     <div className="mt-4">
                         <InputLabel htmlFor="nama_produk" value="Nama Produk" />
                         <TextInput
@@ -95,7 +98,10 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
 
                     <div className="grid gap-6 md:grid-cols-2">
                         <div className="mt-4">
-                            <InputLabel htmlFor="jumlah_jantan" value="Jumlah Jantan" />
+                            <InputLabel
+                                htmlFor="jumlah_jantan"
+                                value="Jumlah Jantan"
+                            />
                             <TextInput
                                 type="text"
                                 name="jumlah_jantan"
@@ -103,10 +109,15 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                                 onChange={handleChange}
                                 className="text-sm w-full p-2.5 mt-2"
                             />
-                            {errors.jumlah_jantan && <InputError message={errors.jumlah_jantan} />}
+                            {errors.jumlah_jantan && (
+                                <InputError message={errors.jumlah_jantan} />
+                            )}
                         </div>
                         <div className="lg:mt-4">
-                            <InputLabel htmlFor="jumlah_betina" value="Jumlah Betina" />
+                            <InputLabel
+                                htmlFor="jumlah_betina"
+                                value="Jumlah Betina"
+                            />
                             <TextInput
                                 type="text"
                                 name="jumlah_betina"
@@ -114,12 +125,52 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                                 onChange={handleChange}
                                 className="text-sm w-full p-2.5 mt-2"
                             />
-                            {errors.jumlah_betina && <InputError message={errors.jumlah_betina} />}
+                            {errors.jumlah_betina && (
+                                <InputError message={errors.jumlah_betina} />
+                            )}
                         </div>
                     </div>
 
                     <div className="mt-4">
-                        <InputLabel htmlFor="jenis_ternak" value="Jenis ternak" />
+                        <InputLabel htmlFor="kode_ternak" value="Kode ternak" />
+                        <TextInput
+                            type="text"
+                            name="kode_ternak"
+                            value={formValues.kode_ternak}
+                            onChange={handleChange}
+                            className="text-sm w-full p-2.5 mt-2"
+                            placeholder="Masukkan kode ternak"
+                        />
+                        {errors.kode_ternak && (
+                            <InputError message={errors.kode_ternak} />
+                        )}
+                    </div>
+
+                    <div className="mt-4">
+                        <InputLabel htmlFor="deskripsi" value="Deskripsi" />
+                        <textarea
+                            rows="4"
+                            name="deskripsi"
+                            value={formValues.deskripsi}
+                            onChange={handleChange}
+                            className="block p-2.5 w-full text-sm mt-2 border-gray-300 focus:border-lime-800 focus:ring-lime-800 rounded-md shadow-sm"
+                            placeholder="Masukkan deskripsi produk"
+                        />
+                        {errors.deskripsi && (
+                            <InputError message={errors.deskripsi} />
+                        )}
+                    </div>
+                    <PrimaryButton type="submit" className="mt-3">
+                        Submit
+                    </PrimaryButton>
+                </div>
+
+                <div className="lg:mt-2 md:mt-2">
+                    <div className="mt-4">
+                        <InputLabel
+                            htmlFor="jenis_ternak"
+                            value="Jenis ternak"
+                        />
                         <select
                             name="id_jenis"
                             value={formValues.id_jenis}
@@ -133,7 +184,9 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                                 </option>
                             ))}
                         </select>
-                        {errors.id_jenis && <InputError message={errors.id_jenis} />}
+                        {errors.id_jenis && (
+                            <InputError message={errors.id_jenis} />
+                        )}
                     </div>
 
                     <div className="mt-4">
@@ -151,56 +204,29 @@ const FormEditTernak = ({ jenis, ring, errors, ternak }) => {
                                 </option>
                             ))}
                         </select>
-                        {errors.id_ring && <InputError message={errors.id_ring} />}
+                        {errors.id_ring && (
+                            <InputError message={errors.id_ring} />
+                        )}
                     </div>
 
                     <div className="mt-4">
-                        <InputLabel htmlFor="kode_ternak" value="Kode ternak" />
                         <TextInput
-                            type="text"
-                            name="kode_ternak"
-                            value={formValues.kode_ternak}
-                            onChange={handleChange}
-                            className="text-sm w-full p-2.5 mt-2"
-                            placeholder="Masukkan kode ternak"
+                            type="file"
+                            onChange={handleImageChange}
+                            className="block w-full text-xs border border-gray-300 rounded-lg cursor-pointer"
                         />
-                        {errors.kode_ternak && <InputError message={errors.kode_ternak} />}
-                    </div>
-
-                    <div className="mt-4">
-                        <InputLabel htmlFor="deskripsi" value="Deskripsi" />
-                        <textarea
-                            rows="4"
-                            name="deskripsi"
-                            value={formValues.deskripsi}
-                            onChange={handleChange}
-                            className="block p-2.5 w-full text-sm mt-2 border-gray-300 focus:border-lime-800 focus:ring-lime-800 rounded-md shadow-sm"
-                            placeholder="Masukkan deskripsi produk"
+                        <img
+                            src={
+                                selectedImage
+                                    ? URL.createObjectURL(selectedImage)
+                                    : `/storage/img/ternaks/${ternak.foto}`
+                            }
+                            alt="Selected"
+                            className="object-cover w-1/2 rounded-md my-2"
                         />
-                        {errors.deskripsi && <InputError message={errors.deskripsi} />}
+                        {errors.foto && <InputError message={errors.foto} />}
                     </div>
                 </div>
-
-                <div className="lg:mt-11 md:mt-11">
-                    <img
-                        src={
-                            selectedImage
-                                ? URL.createObjectURL(selectedImage)
-                                : `/storage/img/ternaks/${ternak.foto}`
-                        }
-                        alt="Selected"
-                        className="object-cover w-full rounded-md mb-2"
-                    />
-                    <TextInput
-                        type="file"
-                        onChange={handleImageChange}
-                        className="block w-full text-xs border border-gray-300 rounded-lg cursor-pointer"
-                    />
-                    {errors.foto && <InputError message={errors.foto} />}
-
-                    <PrimaryButton type="submit" className="mt-3">Submit</PrimaryButton>
-                </div>
-
             </div>
         </form>
     );

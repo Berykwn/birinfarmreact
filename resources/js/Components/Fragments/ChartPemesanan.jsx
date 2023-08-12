@@ -24,12 +24,14 @@ const options = {
       text: 'Laporan data pemesanan',
     },
   },
+  maintainAspectRatio: false, // Placed correctly
 };
+
 
 const ChartPemesanan = ({ chartData }) => {
   return (
-    <div className='bg-white border border-gray-200 rounded-lg shadow-sm max-w-2xl px-4 py-4 flex justify-center items-center'>
-      {chartData ? <Line data={chartData} options={options} /> : 'Loading chart...'}
+    <div className='bg-white shadow-soft-xl rounded-2xl bg-clip-border px-4 py-4 flex justify-center items-center'>
+      {chartData ? <Line data={chartData} options={options} height={'400px'} /> : 'Loading chart...'}
     </div>
   );
 };

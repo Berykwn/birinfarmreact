@@ -31,7 +31,7 @@ class PemesananRequest extends FormRequest
             'kontak' => 'required|string',
             'alamat' => 'required|string',
             'catatan' => 'nullable|string',
-            'status' => 'required|string',
+            'status' => 'required',
         ];
     }
 

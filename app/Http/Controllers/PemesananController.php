@@ -81,30 +81,15 @@ class PemesananController extends Controller
         ]);
     }
 
-    public function chartData() {
-        
-    }
-
     public function confirmPesanan(Request $request, $id)
     {
         $pesanan = Pemesanan::findOrFail($id);
 
-        $pesanan->status = 'Success';
- 
-        $pesanan->save();
+        $pesanan->update([
+            'status' => $request->input('status')
+        ]);
 
-        return redirect()->route('dashboard.pesanan')->with('message', 'Pesanan telah di konfirmasi!');
-    }
-
-    public function tolakPesanan(Request $request, $id)
-    {
-        $pesanan = Pemesanan::findOrFail($id);
-
-        $pesanan->status = 'Ditolak';
-
-        $pesanan->save();
-
-        return redirect('pesanan')->with('message', 'Pesanan telah di Tolak!');
+        return redirect()->route('dashboard.pesanan')->with('message', 'Status pesanan berhasil diupdate.');
     }
 
     /**

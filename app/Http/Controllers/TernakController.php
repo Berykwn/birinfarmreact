@@ -16,12 +16,14 @@ class TernakController extends Controller
 {
     public function ternakPage()
     {
-        $ternakData = Ternak::all();
+        $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(8);
+        $allTernak = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
 
         return Inertia::render('Ternak', [
             'title' => 'Ternak',
             'pages' => 'Ternak',
-            'ternak' => new TernakCollection($ternakData),
+            'ternak' => $ternak,
+            'allTernak' => $allTernak,
         ]);
     }
 
@@ -44,6 +46,7 @@ class TernakController extends Controller
         return Inertia::render('Admin/Ternak/Ternak', [
             'title' => 'Ternak',
             'pages' => 'Ternak',
+            'pageUrl' => 'dashboard.ternak',
             'ternak' => $ternak,
             'allTernak' => $allTernak
         ]);
@@ -71,7 +74,7 @@ class TernakController extends Controller
 
         Ternak::create(array_merge($validatedData, ['foto' => $fotoName]));
 
-        return redirect()->route('dashboard.ternak')->with('message', 'Data berita berhasil ditambahkan.');
+        return redirect()->route('dashboard.ternak')->with('message', 'Data ternak berhasil ditambahkan.');
     }
 
     public function show(Ternak $ternak, Request $request)

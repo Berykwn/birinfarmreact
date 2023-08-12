@@ -15,7 +15,6 @@ const ProductCard = ({ ternaks }) => {
                             alt=""
                         />
                     </a>
-
                 </div>
             ))}
         </>

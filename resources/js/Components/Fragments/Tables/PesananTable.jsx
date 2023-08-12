@@ -3,60 +3,55 @@ import ConfirmationModal from "../Modal/ConfirmationModal";
 import FormattedDate from "@/Components/Elements/FormattedDate";
 import AlertNoFound from "@/Components/Elements/Alert/AlertNotFound";
 import SearchInput from "@/Components/Elements/Input/SearchInput";
-import StatusColor from "@/Components/Elements/StatusColor";
+import StatusColor from "@/Components/Hooks/useStatusColor";
+import useSearch from "@/Components/Hooks/useSearch";
 
 const PesananTable = ({ pesanans, allPesanan }) => {
-    // Modal
     const [openModal, setOpenModal] = useState(undefined);
     const props = { openModal, setOpenModal };
 
-    // Search
-    const [searchKeyword, setSearchKeyword] = useState("");
-    const [isSearching, setIsSearching] = useState(false);
-
-    const handleSearchInputChange = (event) => {
-        const value = event.target.value;
-        setSearchKeyword(value);
-        setIsSearching(value !== "");
-    };
-
-    const filteredPesanans = isSearching
-        ? allPesanan.filter((pesanans) => {
-            const { ternak, users } = pesanans;
-            const normalizedKeyword = searchKeyword.toLowerCase();
-            return ternak.nama.toLowerCase().includes(normalizedKeyword);
-        })
-        : pesanans;
+    const { searchKeyword, handleSearchInputChange, filteredData } = useSearch(
+        allPesanan,
+        pesanans,
+        ["alamat", "status"],
+        "", // You can pass an empty string as relatedKeyword since we're searching by nested property
+        ["ternak.nama"] // Pass related search fields here
+    );
 
     const tableHeadList = [
-        'Nama Produk',
-        'Nama pemesan',
-        'Tanggal pemesanan',
-        'Status',
-        'Action'
+        "Nama Produk",
+        "Nama pemesan",
+        "Tanggal pemesanan",
+        "Status",
+        "Action",
     ];
 
     return (
         <>
-            <SearchInput keyword={searchKeyword} onChange={handleSearchInputChange} size={'lg:w-1/2'} />
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <SearchInput
+                keyword={searchKeyword}
+                onChange={handleSearchInputChange}
+                size={"lg:w-1/2"}
+            />
+            <div className="relative overflow-x-auto sm:rounded-lg">
                 <table className="w-full text-sm text-left text-gray-500">
-                    <thead className="text-sm text-gray-700 uppercase bg-white border-b-2 border-stone-200">
+                    <thead className="text-sm text-gray-700 uppercase bg-gray-100 border-b-2 border-stone-200">
                         <tr>
                             {tableHeadList.map((item) => (
-                                <th key={item} scope="col" className="px-6 py-3">
+                                <th
+                                    key={item}
+                                    scope="col"
+                                    className="px-6 py-3"
+                                >
                                     {item}
                                 </th>
                             ))}
                         </tr>
                     </thead>
                     <tbody className="bg-white">
-                        {filteredPesanans.length > 0 ? (
-                            filteredPesanans.map((item) => (
-                                <tr
-                                    key={item.id}
-                                    
-                                >
+                        {filteredData.length > 0 ? (
+                            filteredData.map((item) => (
+                                <tr key={item.id}>
                                     <th
                                         scope="row"
                                         className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
@@ -72,7 +67,11 @@ const PesananTable = ({ pesanans, allPesanan }) => {
                                     <td className="px-6 py-4">
                                         <FormattedDate date={item.created_at} />
                                     </td>
-                                    <td className={`px-6 py-4 ${StatusColor(item.status)}`}>
+                                    <td
+                                        className={`px-6 py-4 ${StatusColor(
+                                            item.status
+                                        )}`}
+                                    >
                                         {item.status}
                                     </td>
 
@@ -98,8 +97,13 @@ const PesananTable = ({ pesanans, allPesanan }) => {
                             ))
                         ) : (
                             <tr className="bg-white dark:bg-gray-800">
-                                <td colSpan="4" className="text-center py-4 lg:px-36">
-                                    <AlertNoFound />
+                                <td
+                                    colSpan="4"
+                                    className="text-center py-4 lg:px-36"
+                                >
+                                    <AlertNoFound>
+                                        Data pesanan tidak ditemukan!!
+                                    </AlertNoFound>
                                 </td>
                             </tr>
                         )}
