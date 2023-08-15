@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "flowbite-react";
 import { router } from "@inertiajs/react";
+import PrimaryButton from "@/Components/PrimaryButton";
+import SecondaryButton from "@/Components/SecondaryButton";
 
 const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
     const [values, setValues] = useState({
@@ -18,7 +20,7 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        router.post(`/dashboard/pesanan/confirm/${item.id}`, values)
+        router.post(`/dashboard/pesanan/confirm/${item.id}`, values);
         setOpenModal(undefined);
     }
 
@@ -29,17 +31,19 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
             data-pup-up
             onClose={() => setOpenModal(undefined)}
         >
-            <Modal.Header>{item.ternak.nama}</Modal.Header>
             <Modal.Body>
-                <div className="">
-                    <h3 className="mb-5 text-lg font-normal text-gray-500">
+                <div className="px-2 py-2">
+                    <div
+                        className="p-4 mb-4 text-sm text-neutral-800 rounded-lg bg-sky-100 shadow"
+                        role="alert"
+                    >
+                        <span className="font-bold">Perhatian!</span> Anda akan
+                        mengubah status pesanan:{" "}
+                        <span className="font-bold">{item.ternak.nama} - {item.users.name}</span> ?
+                    </div>
+
+                    <h3 className=" text-lg font-normal text-gray-500">
                         <form onSubmit={handleSubmit}>
-                            <label
-                                htmlFor="countries"
-                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >
-                                Ubah status pesanan
-                            </label>
                             <select
                                 id="status"
                                 value={values.status}
@@ -52,8 +56,13 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
                                 <option value="Dikirim">Dikirim</option>
                                 <option value="Success">Success</option>
                             </select>
-                            <div className="flex justify-end gap-4 mt-4">
-                                <button type="submit">Konfirmasi</button>
+                            <div className="flex justify-center gap-2 mt-4">
+                                <PrimaryButton type="submit">Oke</PrimaryButton>
+                                <SecondaryButton
+                                    onClick={() => setOpenModal(undefined)}
+                                >
+                                    cancel
+                                </SecondaryButton>
                             </div>
                         </form>
                     </h3>

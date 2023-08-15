@@ -19,7 +19,7 @@ const TernakTable = ({ allTernak, ternaks }) => {
     );
 
     const tableHeadList = [
-        "Nama Produk",
+        "Nama Produk", 
         "Kode ring",
         "Kode produk",
         "Jumlah jantan",
@@ -105,7 +105,7 @@ const TernakTable = ({ allTernak, ternaks }) => {
                         ) : (
                             <tr className="bg-white">
                                 <td
-                                    colSpan="4"
+                                    colSpan="6"
                                     className="text-center py-4 lg:px-36"
                                 >
                                     <AlertNoFound>

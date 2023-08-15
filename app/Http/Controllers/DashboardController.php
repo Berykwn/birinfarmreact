@@ -43,8 +43,11 @@ class DashboardController extends Controller
         $chartData['datasets'][0]['data'] = $data;
 
         return Inertia::render('Dashboard', [
-            'title' => 'Dashboard',
-            'pages' => 'Dashboard',
+            'pages' => [
+                'title' => 'Dashboard',
+                'name' => 'Dashboard',
+                'url' => 'dashboard'
+            ],
             'chartData' => $chartData,
         ]);
     }

@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, Button } from "flowbite-react";
-import { router } from "@inertiajs/react";
+import { router } from "@inertiajs/react"; 
+import DangerButton from "@/Components/DangerButton";
+import SecondaryButton from "@/Components/SecondaryButton";
 
 const ConfirmDeleteModal = ({ item, openModal, setOpenModal }) => {
     return (
@@ -10,19 +12,16 @@ const ConfirmDeleteModal = ({ item, openModal, setOpenModal }) => {
             data-pup-up
             onClose={() => setOpenModal(undefined)} 
         >
-            <Modal.Header>
-                {item.nama}
-            </Modal.Header>
             <Modal.Body>
-                <div className="text-center">
+                <div className="text-center px-4 py-4">
                     <h3 className="mb-5 text-lg font-normal text-gray-500">
-                        Apakah anda yakin akan menghapus{" "}
+                        Apakah anda yakin akan menghapus data {" "}
                         <span className="font-semibold">
                             {item.nama} 
                         </span> ?
                     </h3>
                     <div className="flex justify-center gap-4">
-                        <Button
+                        <DangerButton
                             color="failure"
                             onClick={() => {
                                 router.post(`/dashboard/ternak/delete/${item.id}`);
@@ -30,13 +29,13 @@ const ConfirmDeleteModal = ({ item, openModal, setOpenModal }) => {
                             }}
                         >
                             Ya
-                        </Button>
-                        <Button
+                        </DangerButton>
+                        <SecondaryButton
                             color="gray"
                             onClick={() => setOpenModal(undefined)}
                         >
                             Tidak
-                        </Button>
+                        </SecondaryButton>
                     </div>
                 </div>
             </Modal.Body>

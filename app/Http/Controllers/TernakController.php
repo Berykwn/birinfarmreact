@@ -40,13 +40,15 @@ class TernakController extends Controller
 
     public function index()
     {
-        $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(6);
+        $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(2);
         $allTernak = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
 
         return Inertia::render('Admin/Ternak/Ternak', [
-            'title' => 'Ternak',
-            'pages' => 'Ternak',
-            'pageUrl' => 'dashboard.ternak',
+            'pages' => [
+                'title' => 'Ternak',
+                'name' => 'Ternak',
+                'url' => 'dashboard.ternak'
+            ],
             'ternak' => $ternak,
             'allTernak' => $allTernak
         ]);
@@ -55,8 +57,11 @@ class TernakController extends Controller
     public function create()
     {
         return Inertia::render('Admin/Ternak/TambahTernak', [
-            'title' => 'Tambah Ternak',
-            'pages' => 'Ternak',
+            'pages' => [
+                'title' => 'Tambah Ternak',
+                'name' => 'Ternak',
+                'url' => 'dashboard.ternak'
+            ],
             'jenis' => Jenis_ternak::all(),
             'ring' => Ring::all(),
         ]);
@@ -93,8 +98,11 @@ class TernakController extends Controller
         $getTernakById = $ternak->with(['jenis_ternak', 'rings'])->find($request->id);
 
         return Inertia::render('Admin/Ternak/EditTernak', [
-            'title' => 'Edit Ternak',
-            'pages' => 'Ternak',
+            'pages' => [
+                'title' => 'Edit Ternak',
+                'name' => 'Ternak',
+                'url' => 'dashboard.ternak'
+            ],
             'ternak' => $getTernakById,
             'jenis' => Jenis_ternak::all(),
             'ring' => Ring::all(),

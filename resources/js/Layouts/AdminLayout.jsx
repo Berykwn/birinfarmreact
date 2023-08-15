@@ -1,79 +1,77 @@
-import React, { useState, useEffect } from "react";
 import Sidebar from "@/Components/Fragments/Partials/Sidebar";
-import { Head } from "@inertiajs/react";
-import NavbarAdmin from "@/Components/Fragments/Partials/NavbarAdmin";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Breadcrumb from "@/Components/Fragments/Breadcrumb";
+import Notification from "@/Components/Elements/Alert/Notification";
+import { useSidebarOpen } from "@/Components/Hooks/useSidebarOpen";
+import { Head, Link } from "@inertiajs/react";
+import { Dropdown } from "flowbite-react";
+import { MdDensitySmall, MdSettings, MdNotifications } from "react-icons/md";
 
-const Notification = () => (
-    <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-    />
-)
+const AdminLayout = (props) => {
+    const { pages, children, flash } = props;
+    const { isSidebarOpen, handleSidebarToggle } = useSidebarOpen(); // Sidebar terbuka secara default
 
-export default function AdminLayout(props) {
-    const { title, pages, children, auth, flash } = props;
-
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-    const handleSidebarToggle = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    };
-
-    useEffect(() => {
-        flash && toast.success(flash);
-    }, [flash]);
+    const backgroundOpacityClass = isSidebarOpen
+        ? "bg-gray-100"
+        : "bg-slate-950 opacity-10 lg:opacity-100 md:opacity-100";
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <Head title={title} />
-            {flash && (<Notification />)}
-            <div className="flex flex-grow">
-                <div
-                    className={`w-80 flex-shrink-0 ${isSidebarOpen && "hidden "
-                        }`}
+        <div className={`bg-gray-100 ${isSidebarOpen ? "" : "ml-80"}`}>
+            {flash && <Notification flash={flash} />}
+
+            <Head title={pages.title} />
+
+            <Sidebar
+                pages={pages}
+                className={`${isSidebarOpen && "hidden"}`}
+            />
+
+            <nav className="flex justify-between items-center mx-auto max-w-screen-xl p-4">
+                <button
+                    onClick={handleSidebarToggle}
+                    className="py-2 mt-2 ml-3 mr-3 text-black"
                 >
-                    <Sidebar pages={pages} />
-                </div>
-                <div
-                    className={`w-full  ${isSidebarOpen
-                        ? "bg-gray-100"
-                        : "lg:bg-gray-100 lg:opacity-100 bg-gray-500 opacity-70"
-                        }`}
-                >
-                    <NavbarAdmin
-                        pages={pages}
-                        auth={auth}
-                        handleSidebarToggle={handleSidebarToggle}
-                    />
-                    <div
-                        className={`${isSidebarOpen
-                            ? "flex flex-col"
-                            : "hidden lg:flex lg:flex-col"
-                            }`}
-                    >
-                        <main>{children}</main>
-                        <div className="flex justify-center py-4 px-8 mt-8">
-                            <span className="text-sm text-gray-500 sm:text-center">
-                                © 2023{" "}
-                                <a href="/" className="hover:underline">
-                                    Birinfarm™
-                                </a>
-                                . All Rights Reserved.
+                    <MdDensitySmall className="text-xl" />
+                </button>
+                <div className="flex items-center gap-2 px-3 py-2 mt-2 mr-4 bg-green-500 text-neutral-200 rounded-lg shadow">
+                    <MdNotifications className="text-2xl" />
+                    <Dropdown
+                        renderTrigger={() => (
+                            <span>
+                                <MdSettings className="text-2xl" />
                             </span>
-                        </div>
-                    </div>
+                        )}
+                    >
+                        <Dropdown.Item>
+                            <Link
+                                method="post"
+                                href={route("logout")}
+                                as="button"
+                            >
+                                Log out
+                            </Link>
+                        </Dropdown.Item>
+                    </Dropdown>
+                </div>
+            </nav>
+            <div className={`lg:bg-gray-100 md:bg-gray-100 ${backgroundOpacityClass}`}>
+                <div className="px-8 mb-4">
+                    <Breadcrumb pages={pages} />
+                </div>
+
+                <main className="px-8">{children}</main>
+
+                <div className="flex justify-center py-4 px-8 mt-8">
+                    <span className="text-sm text-gray-500 sm:text-center">
+                        © 2023{" "}
+                        <a href="/" className="hover:underline">
+                            Birinfarm™
+                        </a>
+                        . All Rights Reserved.
+                    </span>
                 </div>
             </div>
         </div>
     );
-}
+};
+
+export default AdminLayout;

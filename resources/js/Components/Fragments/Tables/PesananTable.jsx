@@ -98,7 +98,7 @@ const PesananTable = ({ pesanans, allPesanan }) => {
                         ) : (
                             <tr className="bg-white dark:bg-gray-800">
                                 <td
-                                    colSpan="4"
+                                    colSpan="6"
                                     className="text-center py-4 lg:px-36"
                                 >
                                     <AlertNoFound>

@@ -74,8 +74,11 @@ class PemesananController extends Controller
         $allPesanan = Pemesanan::with(['ternak', 'users'])->get();
 
         return Inertia::render('Admin/Pesanan/Pesanan', [
-            'title' => 'Pesanan',
-            'pages' => 'Pesanan',
+            'pages' => [
+                'title' => 'Pesanan',
+                'name' => 'Pesanan',
+                'url' => 'dashboard.pesanan'
+            ],
             'pesanan' => $pesanan,
             'allPesanan' => $allPesanan,
         ]);
