@@ -9,6 +9,6 @@ const StatusColor = (status) => {
         default:
             return "";
     }
-}; 
+};
 
 export default StatusColor

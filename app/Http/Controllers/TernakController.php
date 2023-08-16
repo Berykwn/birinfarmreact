@@ -40,7 +40,7 @@ class TernakController extends Controller
 
     public function index()
     {
-        $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(2);
+        $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(6);
         $allTernak = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
 
         return Inertia::render('Admin/Ternak/Ternak', [

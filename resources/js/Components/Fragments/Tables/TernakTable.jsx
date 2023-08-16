@@ -18,15 +18,6 @@ const TernakTable = ({ allTernak, ternaks }) => {
         ["rings.kode", "jenis_ternak.nama"] // Pass related search fields here
     );
 
-    const tableHeadList = [
-        "Nama Produk", 
-        "Kode ring",
-        "Kode produk",
-        "Jumlah jantan",
-        "Jumlah betina",
-        "Action",
-    ];
-
     return (
         <>
             <div className="flex mt-3">
@@ -39,17 +30,14 @@ const TernakTable = ({ allTernak, ternaks }) => {
             </div>
             <div className="relative overflow-x-auto">
                 <table className="w-full text-sm text-left text-gray-500">
-                    <thead className="text-sm text-gray-700 uppercase bg-gray-100">
+                    <thead className="text-sm bg-gray-100">
                         <tr>
-                            {tableHeadList.map((item) => (
-                                <th
-                                    key={item}
-                                    scope="col"
-                                    className="px-6 py-3"
-                                >
-                                    {item}
-                                </th>
-                            ))}
+                            <th className="px-6 py-3">Nama Produk</th>
+                            <th className="px-6 py-3">Kode ring</th>
+                            <th className="px-6 py-3">Kode produk</th>
+                            <th className="px-6 py-3">Jumlah Jantan</th>
+                            <th className="px-6 py-3">Jumlah Betina</th>
+                            <th className="px-6 py-3">Action</th>
                         </tr>
                     </thead>
                     <tbody>
