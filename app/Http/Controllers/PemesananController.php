@@ -74,7 +74,7 @@ class PemesananController extends Controller
                 'name' => 'Pesanan',
                 'url' => 'dashboard.pesanan'
             ],
-            'pesanan' => $pesanan,
+            'pesanans' => $pesanan,
             'allPesanan' => $allPesanan,
         ]);
     }

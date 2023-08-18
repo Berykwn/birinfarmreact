@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TernakController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +18,13 @@ use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
 
 Route::middleware('auth')->group(function () {
-    Route::get("/redirectAuthenticatedUsers", [RedirectAuthenticatedUsersController::class, "home"]);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::group(['middleware' => 'checkRole:admin'], function () {
-
         Route::prefix('dashboard')->group(function () {
             Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
             Route::get('/pesanan', [PemesananController::class, 'index'])->name('dashboard.pesanan');

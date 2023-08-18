@@ -3,21 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jenis_ternak;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\TernakRequest;
 use App\Models\Ring;
 use App\Models\Ternak;
-use Illuminate\Http\Request;
-use Inertia\Inertia;
-use App\Http\Resources\TernakCollection;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\TernakRequest;
-use Illuminate\Support\Str;
+use App\Services\TernakService;
+
 
 class TernakController extends Controller
 {
+
+    protected $ternakService;
+
+    public function __construct(TernakService $ternakService)
+    {
+        $this->ternakService = $ternakService;
+    }
+
     public function ternakPage()
     {
-        $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(8);
-        $allTernak = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
+        $ternak = $this->ternakService->getTernakPaginate(8);
+        $allTernak = $this->ternakService->getAllTernakWithRelations();
 
         return Inertia::render('Ternak', [
             'title' => 'Ternak',
@@ -27,21 +38,21 @@ class TernakController extends Controller
         ]);
     }
 
-    public function detailTernak(Ternak $ternak, Request $request)
+    public function detailTernak(Request $request)
     {
-        $getTernakById = $ternak->with(['jenis_ternak', 'rings'])->find($request->id);
+        $ternak = $this->ternakService->getTernakById($request->id);
 
         return Inertia::render('DetailTernak', [
             'title' => 'Ternak',
             'pages' => 'Ternak',
-            'ternakDetail' => $getTernakById,
+            'ternakDetail' => $ternak,
         ]);
     }
 
     public function index()
     {
-        $ternak = Ternak::with(['jenis_ternak', 'rings'])->latest()->paginate(6);
-        $allTernak = Ternak::with(['jenis_ternak', 'rings'])->latest()->get();
+        $ternak = $this->ternakService->getTernakPaginate(8);
+        $allTernak = $this->ternakService->getAllTernakWithRelations();
 
         return Inertia::render('Admin/Ternak/Ternak', [
             'pages' => [
@@ -62,8 +73,8 @@ class TernakController extends Controller
                 'name' => 'Ternak',
                 'url' => 'dashboard.ternak'
             ],
-            'jenis' => Jenis_ternak::all(),
-            'ring' => Ring::all(),
+            'jenis' => Jenis_ternak::latest()->get(),
+            'ring' => Ring::latest()->get(),
         ]);
     }
 
@@ -82,20 +93,20 @@ class TernakController extends Controller
         return redirect()->route('dashboard.ternak')->with('message', 'Data ternak berhasil ditambahkan.');
     }
 
-    public function show(Ternak $ternak, Request $request)
-    {
-        $ternaks = $ternak->with(['jenis_ternak', 'rings'])->find($request->id);
+    // public function show(Ternak $ternak, Request $request)
+    // {
+    //     $ternaks = $ternak->with(['jenis_ternak', 'rings'])->find($request->id);
 
-        return Inertia::render('Admin/Ternak/DetailTernak', [
-            'ternak' => $ternaks,
-            'pages' => 'Ternak',
-            'title' => 'Detail Ternak',
-        ]);
-    }
+    //     return Inertia::render('Admin/Ternak/DetailTernak', [
+    //         'ternak' => $ternaks,
+    //         'pages' => 'Ternak',
+    //         'title' => 'Detail Ternak',
+    //     ]);
+    // }
 
-    public function edit(Ternak $ternak, Request $request)
+    public function edit(Request $request)
     {
-        $getTernakById = $ternak->with(['jenis_ternak', 'rings'])->find($request->id);
+        $ternak = $this->ternakService->getTernakById($request->id);
 
         return Inertia::render('Admin/Ternak/EditTernak', [
             'pages' => [
@@ -103,9 +114,9 @@ class TernakController extends Controller
                 'name' => 'Ternak',
                 'url' => 'dashboard.ternak'
             ],
-            'ternak' => $getTernakById,
-            'jenis' => Jenis_ternak::all(),
-            'ring' => Ring::all(),
+            'ternak' => $ternak,
+            'jenis' => Jenis_ternak::latest()->get(),
+            'ring' => Ring::latest()->get(),
         ]);
     }
 

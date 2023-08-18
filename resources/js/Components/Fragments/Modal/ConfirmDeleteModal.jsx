@@ -4,10 +4,10 @@ import { router } from "@inertiajs/react";
 import DangerButton from "@/Components/DangerButton";
 import SecondaryButton from "@/Components/SecondaryButton";
 
-const ConfirmDeleteModal = ({ item, openModal, setOpenModal }) => {
+const ConfirmDeleteModal = ({ id, nama, openModal, setOpenModal }) => {
     return (
         <Modal
-            show={openModal === `pup-up${item.id}`}
+            show={openModal === `pup-up${id}`}
             size="md"
             data-pup-up
             onClose={() => setOpenModal(undefined)} 
@@ -17,14 +17,14 @@ const ConfirmDeleteModal = ({ item, openModal, setOpenModal }) => {
                     <h3 className="mb-5 text-lg font-normal text-gray-500">
                         Apakah anda yakin akan menghapus data {" "}
                         <span className="font-semibold">
-                            {item.nama} 
+                            {nama} 
                         </span> ?
                     </h3>
                     <div className="flex justify-center gap-4">
                         <DangerButton
                             color="failure"
                             onClick={() => {
-                                router.post(`/dashboard/ternak/delete/${item.id}`);
+                                router.post(`/dashboard/ternak/delete/${id}`);
                                 setOpenModal(undefined);
                             }}
                         >

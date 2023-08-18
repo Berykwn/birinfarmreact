@@ -4,7 +4,15 @@ import { router } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 import SecondaryButton from "@/Components/SecondaryButton";
 
-const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
+const ConfirmationModal = ({
+    openModal,
+    setOpenModal,
+    id,
+    ternak,
+    users,
+    created_at,
+    status,
+}) => {
     const [values, setValues] = useState({
         status: "",
     });
@@ -20,13 +28,13 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        router.post(`/dashboard/pesanan/confirm/${item.id}`, values);
+        router.post(`/dashboard/pesanan/confirm/${id}`, values);
         setOpenModal(undefined);
     }
 
     return (
         <Modal
-            show={openModal === `pup-up${item.id}`}
+            show={openModal === `pup-up${id}`}
             size="md"
             data-pup-up
             onClose={() => setOpenModal(undefined)}
@@ -39,7 +47,10 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
                     >
                         <span className="font-bold">Perhatian!</span> Anda akan
                         mengubah status pesanan:{" "}
-                        <span className="font-bold">{item.ternak.nama} - {item.users.name}</span> ?
+                        <span className="font-bold">
+                            {ternak.nama} - {users.name}
+                        </span>{" "}
+                        ?
                     </div>
 
                     <h3 className=" text-lg font-normal text-gray-500">
@@ -48,14 +59,14 @@ const ConfirmationModal = ({ item, openModal, setOpenModal }) => {
                                 id="status"
                                 value={values.status}
                                 onChange={handleChange}
+                                defaultValue="Pending" // Set the default value here
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             >
                                 <option value="Ditolak">Ditolak</option>
                                 <option value="Pending">Pending</option>
-                                <option value="Diterima">Diterima</option>
-                                <option value="Dikirim">Dikirim</option>
                                 <option value="Success">Success</option>
                             </select>
+
                             <div className="flex justify-center gap-2 mt-4">
                                 <PrimaryButton type="submit">Oke</PrimaryButton>
                                 <SecondaryButton

@@ -16,6 +16,6 @@ class TernakSeeder extends Seeder
      */
     public function run()
     {
-        Ternak::factory()->count(4)->create();
+        Ternak::factory()->count(100)->create();
     }
 }

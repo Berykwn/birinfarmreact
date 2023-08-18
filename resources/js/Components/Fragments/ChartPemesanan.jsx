@@ -26,7 +26,7 @@ const options = {
     responsive: true,
     plugins: {
         legend: {
-            position: "bottom",
+            position: "top",
         },
         title: {
             display: false,
@@ -61,7 +61,7 @@ const ChartPemesanan = ({ chartData }) => {
     return (
         <div className="bg-white shadow-soft-xl rounded-2xl bg-clip-border px-4 py-4 flex justify-center items-center">
             {chartData ? (
-                <Line data={data} options={options} height={"400px"} />
+                <Line data={data} options={options} className="h-[380px] px-2 py-4" />
             ) : (
                 "Loading chart..."
             )}

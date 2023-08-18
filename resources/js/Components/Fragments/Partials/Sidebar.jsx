@@ -17,36 +17,49 @@ const sidebarListMenu = [
         routeName: "dashboard",
         icon: MdDashboard,
         label: "Dashboard",
+        method: "GET"
     },
     {
         name: "Pesanan",
         routeName: "dashboard.pesanan",
         icon: MdStorefront,
         label: "Pesanan",
+        method: "GET"
     },
     {
         name: "Ternak",
         routeName: "dashboard.ternak",
         icon: MdOutlineWarehouse,
         label: "Produk ternak",
+        method: "GET"
     },
     {
         name: "Artikel",
         routeName: "dashboard",
         icon: MdArticle,
         label: "Artikel",
+        method: "GET"
     },
     {
         name: "Galeri",
         routeName: "dashboard",
         icon: MdOutlineAspectRatio,
         label: "Galeri",
+        method: "GET"
     },
     {
         name: "Profile",
         routeName: "dashboard",
         icon: MdManageAccounts,
         label: "Kelola akun",
+        method: "GET"
+    },
+    {
+        name: "Log out",
+        routeName: "logout",
+        icon: MdLogout,
+        label: "Log out",
+        method: "POST"
     },
 ];
 
@@ -61,6 +74,7 @@ const Sidebar = ({ pages, className }) => {
                     {sidebarListMenu.map((page, index) => (
                         <li key={index} className="px-4">
                             <Link
+                                method={page.method}
                                 href={route(page.routeName)}
                                 className={`flex items-center p-3 text-gray-900 rounded-lg hover:bg-gray-100 ${
                                     pages.name === page.name &&
@@ -73,13 +87,6 @@ const Sidebar = ({ pages, className }) => {
                         </li>
                     ))}
                 </ul>
-                <Link
-                    href="#"
-                    className="flex items-center justify-center mt-4 mb-4 mx-4 px-2 py-2 bg-gray-200 hover:bg-gray-100 rounded-md tracking-wide"
-                >
-                    <MdLogout className="text-xl" />
-                    <span className="ml-3">Logout</span>
-                </Link>
             </aside>
         </div>
     );

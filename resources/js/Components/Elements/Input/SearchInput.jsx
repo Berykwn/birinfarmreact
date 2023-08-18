@@ -1,23 +1,23 @@
-import Icon from "@/Components/Elements/Icon";
-
-const SearchInput = ({keyword, onChange, size}) => {
+const SearchInput = ({ keyword, onChange, size }) => {
     return (
-        <form>
+        <form className="">
             <div className={`relative mb-4 ${size}`}>
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <Icon iconName={"search"} />
-                </div>
                 <input
                     type="search"
                     id="default-search"
-                    className="block w-full p-3 pl-10 text-sm text-gray-900 border-stone-300 rounded-lg focus:ring-lime-900 focus:border-0"
+                    className="block w-full px-2.5 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Cari ..."
                     value={keyword}
                     onChange={onChange}
                 />
+                <button
+                    type="submit"
+                    className="text-slate-800 absolute px-1 py-0.5 right-2.5 bottom-2.5  rounded-md text-xl"
+                >
+                </button>
             </div>
         </form>
-    )
-}
+    );
+};
 
-export default SearchInput
+export default SearchInput;

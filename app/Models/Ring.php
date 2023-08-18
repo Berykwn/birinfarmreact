@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ring extends Model
 {
     use HasFactory;
+
+    public function ternak()
+    {
+        return $this->hasMany(Ternak::class);
+    }
 }

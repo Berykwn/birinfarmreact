@@ -1,7 +1,6 @@
 import useStatusColor from "@/Components/Hooks/useStatusColor";
 
 const LatestCustomerCard = ({ latestOrder }) => {
-    console.log(latestOrder)
     return (
         <div className="w-full max-w-md p-4 bg-white shadow-soft-xl rounded-2xl bg-clip-border sm:p-8">
             <div className="flex items-center justify-between mb-4">

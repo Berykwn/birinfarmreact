@@ -3,9 +3,20 @@ import { Link } from "@inertiajs/react";
 import Paginator from "@/Components/Fragments/Paginator";
 import AdminLayout from "@/Layouts/AdminLayout";
 import TernakTable from "@/Components/Fragments/Tables/TernakTable";
+import PageTitle from "@/Components/Elements/PageTitle";
+import useSearch from "@/Components/Hooks/useSearch";
+import SearchInput from "@/Components/Elements/Input/SearchInput";
 
 const Ternak = (props) => {
-    const { auth, pages, title, flash, ternak, allTernak, page } = props;
+    const { auth, pages, title, flash, ternak, allTernak } = props;
+    const { searchKeyword, handleSearchInputChange, filteredData } = useSearch(
+        allTernak,
+        ternak.data,
+        ["nama", "kode_ternak"],
+        "", // You can pass an empty string as relatedKeyword since we're searching by nested property
+        ["rings.kode", "jenis_ternak.nama"] // Pass related search fields here
+    );
+
     return (
         <AdminLayout
             title={title}
@@ -14,30 +25,53 @@ const Ternak = (props) => {
             flash={flash.message}
         >
             <section className="bg-white shadow-soft-xl rounded-2xl bg-clip-border px-10 py-10">
-                <h1 className="text-stone-900 text-2xl md:text-4xl font-extrabold mb-2">
-                    Data ternak
-                </h1>
-                <div
-                    className="p-4 text-sm text-gray-800 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-gray-300"
-                    role="alert"
-                >
-                    Kelola data ternak birinfarm, anda bisa mencari data sesuai
-                    keyword yang ada pada tabel, menambah data ternak baru,
-                    mengubah data ternak yang sesuai, dan menghapus data ternak
-                    yang tidak relevan!
-                    <div className="mt-4 mb-2">
-                        <Link
-                            href={route("dashboard.ternak.create")}
-                            className="px-3 py-3 text-xs font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800"
-                        >
-                            Tambah Produk
-                        </Link>
+                <PageTitle>List ternak</PageTitle>
+
+                <div className="w-3/4 text-sm text-gray-800">
+                    <div className="bg-gray-100 p-6">
+                        Kelola data ternak birinfarm, anda bisa mencari data
+                        sesuai keyword yang ada pada tabel, menambah data ternak
+                        baru, mengubah data ternak yang sesuai, dan menghapus
+                        data ternak yang tidak relevan!
+                        <div className="mt-4">
+                            <Link
+                                href={route("dashboard.ternak.create")}
+                                className="px-3 py-2 text-xs font-medium text-center text-white bg-green-600 rounded-md hover:bg-green-700"
+                            >
+                                Tambah Produk
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="flex mt-3">
+                        <div className="w-full">
+                            <SearchInput
+                                keyword={searchKeyword}
+                                onChange={handleSearchInputChange}
+                            />
+                        </div>
                     </div>
                 </div>
-                <TernakTable ternaks={ternak.data} allTernak={allTernak} />
-                <div className="flex justify-start py-4">
-                    <Paginator link={ternak.links} flash={flash} />
-                </div>
+
+                <TernakTable>
+                    <TernakTable.Header />
+                    {filteredData.length ? (
+                        filteredData.map((item) => (
+                            <TernakTable.Body
+                                key={item.id}
+                                id={item.id}
+                                nama={item.nama}
+                                kode_ring={item.rings.kode}
+                                kode_ternak={item.kode_ternak}
+                                jumlah_jantan={item.jumlah_jantan}
+                                jumlah_betina={item.jumlah_betina}
+                            />
+                        ))
+                    ) : (
+                        <TernakTable.NotFound />
+                    )}
+                </TernakTable>
+
+                <Paginator link={ternak.links} flash={flash} />
             </section>
         </AdminLayout>
     );

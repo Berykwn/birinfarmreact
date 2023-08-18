@@ -4,10 +4,10 @@ import Notification from "@/Components/Elements/Alert/Notification";
 import { useSidebarOpen } from "@/Components/Hooks/useSidebarOpen";
 import { Head, Link } from "@inertiajs/react";
 import { Dropdown } from "flowbite-react";
-import { MdDensitySmall, MdSettings, MdNotifications } from "react-icons/md";
+import { MdDensitySmall, MdNotifications } from "react-icons/md";
 
 const AdminLayout = (props) => {
-    const { pages, children, flash } = props;
+    const { pages, children, flash, auth } = props;
     const { isSidebarOpen, handleSidebarToggle } = useSidebarOpen(); // Sidebar terbuka secara default
 
     const backgroundOpacityClass = isSidebarOpen
@@ -20,40 +20,39 @@ const AdminLayout = (props) => {
 
             <Head title={pages.title} />
 
-            <Sidebar
-                pages={pages}
-                className={`${isSidebarOpen && "hidden"}`}
-            />
+            <Sidebar pages={pages} className={`${isSidebarOpen && "hidden"}`} />
 
-            <nav className="flex justify-between items-center mx-auto max-w-screen-xl p-4">
+            <nav className="flex justify-stretch lg:justify-between md:justify-between items-center mx-auto max-w-screen-xl p-4">
                 <button
                     onClick={handleSidebarToggle}
                     className="py-2 mt-2 ml-3 mr-3 text-black"
                 >
                     <MdDensitySmall className="text-xl" />
                 </button>
-                <div className="flex items-center gap-2 px-3 py-2 mt-2 mr-4 bg-green-500 text-neutral-200 rounded-lg shadow">
-                    <MdNotifications className="text-2xl" />
+                <div className="flex items-center gap-2 px-3 py-2 mt-2 mr-4">
+                    <MdNotifications className="text-xl" />
                     <Dropdown
-                        renderTrigger={() => (
-                            <span>
-                                <MdSettings className="text-2xl" />
+                        inline
+                        label={
+                            <span className="text-sm font-semibold text-neutral-500">
+                                {auth.user.name}
                             </span>
-                        )}
+                        }
                     >
-                        <Dropdown.Item>
-                            <Link
-                                method="post"
-                                href={route("logout")}
-                                as="button"
-                            >
-                                Log out
-                            </Link>
-                        </Dropdown.Item>
+                        <Link
+                            method="post"
+                            href={route("logout")}
+                            as="button"
+                            className="w-full"
+                        >
+                            <Dropdown.Item>Log out</Dropdown.Item>
+                        </Link>
                     </Dropdown>
                 </div>
             </nav>
-            <div className={`lg:bg-gray-100 md:bg-gray-100 ${backgroundOpacityClass}`}>
+            <div
+                className={`lg:bg-gray-100 md:bg-gray-100 ${backgroundOpacityClass}`}
+            >
                 <div className="px-8 mb-4">
                     <Breadcrumb pages={pages} />
                 </div>

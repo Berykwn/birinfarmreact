@@ -22,12 +22,12 @@ class Ternak extends Model
 
     public function jenis_ternak()
     {
-        return $this->belongsTo(Jenis_Ternak::class, 'id_jenis');
+        return $this->belongsTo(Jenis_Ternak::class, 'id_jenis')->select('id', 'nama');
     }
     
     public function rings()
     {
-        return $this->belongsTo(Ring::class, 'id_ring');
+        return $this->belongsTo(Ring::class, 'id_ring')->select('id', 'kode');
     }
 
 }
