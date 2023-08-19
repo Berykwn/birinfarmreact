@@ -3,7 +3,7 @@ import { router } from "@inertiajs/react";
 
 import TextInput from "@/Components/Elements/Input/TextInput";
 import InputError from "@/Components/Elements/Input/InputError";
-import PrimaryButton from "@/Components/PrimaryButton";
+import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
 import InputLabel from "@/Components/Elements/Input/InputLabel";
 
 const FormTambahTernak = ({ jenis, ring, errors }) => {

@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\TernakFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Ternak;
+use App\Models\Artikel;
 
-class TernakSeeder extends Seeder
+
+class ArtikelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +16,6 @@ class TernakSeeder extends Seeder
      */
     public function run()
     {
-        Ternak::factory()->count(10)->create();
+        Artikel::factory()->count(10)->create();
     }
 }

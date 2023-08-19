@@ -1,12 +1,12 @@
 import Paginator from "@/Components/Fragments/Paginator";
 import PesananTable from "@/Components/Fragments/Tables/PesananTable";
 import AdminLayout from "@/Layouts/AdminLayout";
-import useSearch from "@/Components/Hooks/useSearch";
+import useSearch from "@/Hooks/useSearch";
 import SearchInput from "@/Components/Elements/Input/SearchInput";
 import PageTitle from "@/Components/Elements/PageTitle";
 
 const Pesanan = (props) => {
-    const { auth, pages, title, pesanans, allPesanan, flash } = props;
+    const { auth, pages, pesanans, allPesanan, flash } = props;
     const { searchKeyword, handleSearchInputChange, filteredData } = useSearch(
         allPesanan,
         pesanans.data,
@@ -15,12 +15,7 @@ const Pesanan = (props) => {
         ["ternak.nama"] // Pass related search fields here
     );
     return (
-        <AdminLayout
-            title={title}
-            pages={pages}
-            auth={auth}
-            flash={flash.message}
-        >
+        <AdminLayout pages={pages} auth={auth} flash={flash.message}>
             <section className="bg-white shadow-soft-xl rounded-2xl bg-clip-border px-10 py-10">
                 <PageTitle>List Pesanan</PageTitle>
 

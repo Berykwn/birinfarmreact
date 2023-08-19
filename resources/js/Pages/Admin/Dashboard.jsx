@@ -6,6 +6,7 @@ import LatestCustomerCard from "@/Components/Fragments/Card/LatestCustomerCard";
 
 export default function Dashboard(props) {
     const { auth, pages, chartData, totalData, latestOrder } = props;
+
     return (
         <AdminLayout pages={pages} auth={auth}>
             <section>

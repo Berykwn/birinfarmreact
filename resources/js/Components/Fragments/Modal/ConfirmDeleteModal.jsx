@@ -1,8 +1,8 @@
 import React from "react";
 import { Modal, Button } from "flowbite-react";
 import { router } from "@inertiajs/react"; 
-import DangerButton from "@/Components/DangerButton";
-import SecondaryButton from "@/Components/SecondaryButton";
+import DangerButton from "@/Components/Elements/Button/DangerButton";
+import SecondaryButton from "@/Components/Elements/Button/SecondaryButton";
 
 const ConfirmDeleteModal = ({ id, nama, openModal, setOpenModal }) => {
     return (

@@ -113,7 +113,7 @@ class TernakController extends Controller
                 'title' => 'Edit Ternak',
                 'name' => 'Ternak',
                 'url' => 'dashboard.ternak'
-            ],
+            ], 
             'ternak' => $ternak,
             'jenis' => Jenis_ternak::latest()->get(),
             'ring' => Ring::latest()->get(),

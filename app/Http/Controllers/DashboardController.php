@@ -41,7 +41,7 @@ class DashboardController extends Controller
             ->take(4)
             ->get();
 
-        return Inertia::render('Dashboard', [
+        return Inertia::render('Admin/Dashboard', [
             'pages' => [
                 'title' => 'Dashboard',
                 'name' => 'Dashboard',

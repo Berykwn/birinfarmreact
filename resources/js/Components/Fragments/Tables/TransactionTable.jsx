@@ -1,5 +1,5 @@
-import FormattedDate from "@/Components/Elements/FormattedDate";
-import StatusColor from "@/Components/Hooks/useStatusColor";
+import FormattedDate from "@/Hooks/useDateFormat";
+import StatusColor from "@/Hooks/useStatusColor";
 import { Link } from "@inertiajs/react";
 
 const TransactionTable = ({ transaction }) => {

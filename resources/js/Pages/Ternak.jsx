@@ -3,7 +3,7 @@ import AlertNoFound from "@/Components/Elements/Alert/AlertNotFound";
 import Paginator from "@/Components/Fragments/Paginator";
 import MainLayout from "@/Layouts/MainLayout";
 import TernakCard from "@/Components/Fragments/Card/TernakCard";
-import useSearch from "@/Components/Hooks/useSearch";
+import useSearch from "@/Hooks/useSearch";
 
 const Ternak = (props) => {
     const { title, pages, ternak, allTernak, auth } = props;

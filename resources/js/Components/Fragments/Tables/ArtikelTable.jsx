@@ -1,37 +1,33 @@
-import React, { useState } from "react";
-import FormattedDate from "@/Hooks/useDateFormat";
-import StatusColor from "@/Hooks/useStatusColor";
 import AlertNotFound from "@/Components/Elements/Alert/AlertNotFound";
-import ConfirmationModal from "../Modal/ConfirmationModal";
 
 const Header = () => (
     <thead className="text-sm bg-gray-100">
         <tr>
-            <th className="px-6 py-3">Nama Produk</th>
-            <th className="px-6 py-3">Nama pemesan</th>
-            <th className="px-6 py-3">Tanggal pemesanan</th>
-            <th className="px-6 py-3">Status</th>
-            <th className="px-6 py-3">Action</th> 
+            <th className="px-6 py-3">Judul</th>
+            <th className="px-6 py-3">Deskripsi</th>
+            <th className="px-6 py-3">Penulis</th>
+            <th className="px-6 py-3">Action</th>
         </tr>
     </thead>
 );
 
-const Body = ({ id, ternak, users, created_at, status }) => {
-    const [openModal, setOpenModal] = useState(undefined);
+const Body = ({ id, judul, deskripsi, author }) => {
     return (
         <tbody className="bg-white">
             <tr>
                 <th scope="row" className="px-6 py-4">
-                    {ternak.nama}
+                    {judul}
                 </th>
+                <td scope="row" className="px-6 py-4 text-justify">
+                    {deskripsi}
+                </td>
                 <td scope="row" className="px-6 py-4">
-                    {users.name}
+                    {author}
                 </td>
-                <td className="px-6 py-4">
+                {/* <td className="px-6 py-4">
                     <FormattedDate date={created_at} />
-                </td>
-                <td className={`px-6 py-4 ${StatusColor(status)}`}>{status}</td>
-                <td className="px-6 py-4">
+                </td> */}
+                {/* <td className="px-6 py-4">
                     <button
                         className="px-3 py-2 text-xs font-medium text-center text-white bg-sky-700 rounded-lg hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-sky-300"
                         onClick={() => setOpenModal(`pup-up${id}`)}
@@ -48,23 +44,23 @@ const Body = ({ id, ternak, users, created_at, status }) => {
                         openModal={openModal}
                         setOpenModal={setOpenModal}
                     />
-                </td>
+                </td> */}
             </tr>
         </tbody>
     );
 };
 
 const NotFound = () => (
-    <tbody className="bg-white">
+    <tbody className="bg-white"> 
         <tr className="bg-white dark:bg-gray-800">
             <td colSpan="5" className="text-center py-4 lg:px-36">
-                <AlertNotFound>Data pesanan tidak ditemukan!!</AlertNotFound>
+                <AlertNotFound>Data artikel tidak ditemukan!!</AlertNotFound>
             </td>
         </tr>
     </tbody>
 );
- 
-const PesananTable = ({ children }) => {
+
+const ArtikelTable = ({ children }) => {
     return (
         <div className="relative overflow-x-auto mb-4">
             <table className="w-full text-sm text-left text-gray-500">
@@ -74,8 +70,8 @@ const PesananTable = ({ children }) => {
     );
 };
 
-PesananTable.Header = Header;
-PesananTable.Body = Body;
-PesananTable.NotFound = NotFound;
+ArtikelTable.Header = Header;
+ArtikelTable.Body = Body;
+ArtikelTable.NotFound = NotFound;
 
-export default PesananTable;
+export default ArtikelTable;

@@ -1,7 +1,7 @@
 import Sidebar from "@/Components/Fragments/Partials/Sidebar";
 import Breadcrumb from "@/Components/Fragments/Breadcrumb";
 import Notification from "@/Components/Elements/Alert/Notification";
-import { useSidebarOpen } from "@/Components/Hooks/useSidebarOpen";
+import { useSidebarOpen } from "@/Hooks/useSidebarOpen";
 import { Head, Link } from "@inertiajs/react";
 import { Dropdown } from "flowbite-react";
 import { MdDensitySmall, MdNotifications } from "react-icons/md";

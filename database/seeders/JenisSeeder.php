@@ -16,7 +16,16 @@ class JenisSeeder extends Seeder
     public function run()
     {
         DB::table('jenis_ternaks')->insert([
-            'nama' => 'Ayam'
+            'nama' => 'Abon'
+        ]);
+        DB::table('jenis_ternaks')->insert([
+            'nama' => 'Karkas'
+        ]);
+        DB::table('jenis_ternaks')->insert([
+            'nama' => 'Lele'
+        ]);
+        DB::table('jenis_ternaks')->insert([
+            'nama' => 'Pitik'
         ]);
     }
 }

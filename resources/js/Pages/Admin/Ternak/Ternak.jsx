@@ -4,11 +4,13 @@ import Paginator from "@/Components/Fragments/Paginator";
 import AdminLayout from "@/Layouts/AdminLayout";
 import TernakTable from "@/Components/Fragments/Tables/TernakTable";
 import PageTitle from "@/Components/Elements/PageTitle";
-import useSearch from "@/Components/Hooks/useSearch";
+import useSearch from "@/Hooks/useSearch";
 import SearchInput from "@/Components/Elements/Input/SearchInput";
+import Jumbotron from "@/Components/Fragments/Jumbotron";
+import PrimaryLink from "@/Components/Elements/Link/PrimaryLInk";
 
 const Ternak = (props) => {
-    const { auth, pages, title, flash, ternak, allTernak } = props;
+    const { auth, pages, flash, ternak, allTernak } = props;
     const { searchKeyword, handleSearchInputChange, filteredData } = useSearch(
         allTernak,
         ternak.data,
@@ -18,39 +20,27 @@ const Ternak = (props) => {
     );
 
     return (
-        <AdminLayout
-            title={title}
-            pages={pages}
-            auth={auth}
-            flash={flash.message}
-        >
+        <AdminLayout pages={pages} auth={auth} flash={flash.message}>
             <section className="bg-white shadow-soft-xl rounded-2xl bg-clip-border px-10 py-10">
                 <PageTitle>List ternak</PageTitle>
 
-                <div className="w-3/4 text-sm text-gray-800">
-                    <div className="bg-gray-100 p-6">
-                        Kelola data ternak birinfarm, anda bisa mencari data
-                        sesuai keyword yang ada pada tabel, menambah data ternak
-                        baru, mengubah data ternak yang sesuai, dan menghapus
-                        data ternak yang tidak relevan!
-                        <div className="mt-4">
-                            <Link
-                                href={route("dashboard.ternak.create")}
-                                className="px-3 py-2 text-xs font-medium text-center text-white bg-green-600 rounded-md hover:bg-green-700"
-                            >
-                                Tambah Produk
-                            </Link>
-                        </div>
+                <Jumbotron>
+                    Kelola data ternak birinfarm, anda bisa mencari data sesuai
+                    keyword yang ada pada tabel, menambah data ternak baru,
+                    mengubah data ternak yang sesuai, dan menghapus data ternak
+                    yang tidak relevan!
+                    <div className="mt-4">
+                        <PrimaryLink href={route("dashboard.ternak.create")}>
+                            Tambah Produk
+                        </PrimaryLink>
                     </div>
-                    <div className="flex mt-3">
-                        <div className="w-full">
-                            <SearchInput
-                                keyword={searchKeyword}
-                                onChange={handleSearchInputChange}
-                            />
-                        </div>
-                    </div>
-                </div>
+                </Jumbotron>
+
+                <SearchInput
+                    keyword={searchKeyword}
+                    onChange={handleSearchInputChange}
+                    size={"lg:w-1/2 w-full"}
+                />
 
                 <TernakTable>
                     <TernakTable.Header />

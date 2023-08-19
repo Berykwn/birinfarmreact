@@ -1,4 +1,4 @@
-import useStatusColor from "@/Components/Hooks/useStatusColor";
+import useStatusColor from "@/Hooks/useStatusColor";
 
 const LatestCustomerCard = ({ latestOrder }) => {
     return (

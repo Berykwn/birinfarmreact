@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\Auth\RedirectAuthenticatedUsersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
             Route::post('/ternak/store', [TernakController::class, 'store'])->name('dashboard.ternak.store');
             Route::post('/ternak/update/{id}', [TernakController::class, 'update'])->name('dashboard.ternak.update');
             Route::post('/ternak/delete/{id}', [TernakController::class, 'destroy'])->name('dashboard.ternak.destroy');
+
+            Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
         });
     });
 
@@ -53,6 +56,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/ternak', [TernakController::class, 'ternakPage'])->name('ternak');
 Route::get('/detailTernak', [TernakController::class, 'detailTernak'])->name('ternak.detail');
+Route::get('/artikel', [ArtikelController::class, 'getArtikel'])->name('artikel');
 
 
 require __DIR__ . '/auth.php';

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "flowbite-react";
 import { router } from "@inertiajs/react";
-import PrimaryButton from "@/Components/PrimaryButton";
-import SecondaryButton from "@/Components/SecondaryButton";
+import PrimaryButton from "@/Components/Elements/Button/PrimaryButton";
+import SecondaryButton from "@/Components/Elements/Button/SecondaryButton";
 
 const ConfirmationModal = ({
     openModal,

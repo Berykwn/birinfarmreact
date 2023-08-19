@@ -35,7 +35,7 @@ const sidebarListMenu = [
     },
     {
         name: "Artikel",
-        routeName: "dashboard",
+        routeName: "artikel",
         icon: MdArticle,
         label: "Artikel",
         method: "GET"
